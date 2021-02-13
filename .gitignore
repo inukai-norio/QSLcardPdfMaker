@@ -1,3 +1,6 @@
+# test tmp config
+jest.config.js
+
 # Logs
 logs
 *.log
