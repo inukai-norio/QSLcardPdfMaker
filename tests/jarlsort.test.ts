@@ -8,10 +8,10 @@ describe('jarlsort', () => {
     const expected = fs.readFileSync('./tests/data/jarlsort/test.json', {
       encoding: 'utf8',
     });
-    const records = jarlsort(adi).records;
+    const { records } = jarlsort(adi);
     if (records === undefined) {
       return expect(records).not.toBeUndefined();
-    } 
+    }
     expect(records.map((v) => v.call)).toEqual(JSON.parse(expected));
-  })
+  });
 });

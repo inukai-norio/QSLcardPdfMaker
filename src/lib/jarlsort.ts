@@ -6,19 +6,19 @@ type records = {
 };
 /**
  * ソート用比較関数
- * @param a 
- * @param b 
+ * @param a
+ * @param b
  */
 const compare = (a: string, b: string) => {
   if (a < b) {
     return -1;
   }
   return 1;
-}
+};
 
 /**
  * JA局をソートが簡単にするための前処理
- * 
+ *
  * 下記のように書き換える
  * // JA1BCD -> 1JABCD
  * // JB0CDE -> AJBCDE
@@ -27,7 +27,7 @@ const compare = (a: string, b: string) => {
 const preset = (v: string) => {
   if (v[2] === '0') {
     // ascii 文字コードの '9' より大きければいいので、'A' にする
-    return 'A' + v.slice(0, 2) + v.slice(3);
+    return `A${v.slice(0, 2)}${v.slice(3)}`;
   }
   return v[2] + v.slice(0, 2) + v.slice(3);
 };
@@ -40,7 +40,6 @@ const jaSort = (data: records[]): records[] => {
   const dataJ = data.filter((v) => v.call[0] === 'J');
   const data7 = data.filter((v) => v.call[0] !== 'J');
   const sortedDataJ = dataJ.sort((a, b) => {
-    
     const atemp = preset(a.call);
     const btemp = preset(b.call);
 
@@ -60,11 +59,15 @@ export const jarlsort = (data: SimpleAdif): SimpleAdif => {
     return data;
   }
   // 1. JA局とその他（外国局）で分ける。
-  const recordsJA = data.records.filter((v) => getAmateurRadioInfoByCallsign(v.call).area === 'Japan');
-  const recordsDX = data.records.filter((v) => getAmateurRadioInfoByCallsign(v.call).area !== 'Japan');
+  const recordsJA = data.records.filter(
+    (v) => getAmateurRadioInfoByCallsign(v.call).area === 'Japan'
+  );
+  const recordsDX = data.records.filter(
+    (v) => getAmateurRadioInfoByCallsign(v.call).area !== 'Japan'
+  );
   const sortedRecordsJA = jaSort(recordsJA);
   const sortedRecordsDX = recordsDX.sort((a, b) => compare(a.call, b.call));
-  
+
   data.records = sortedRecordsJA.concat(sortedRecordsDX);
   return data;
-}
+};
