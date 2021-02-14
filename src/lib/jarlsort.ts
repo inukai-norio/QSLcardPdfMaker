@@ -58,6 +58,7 @@ const jaSort = (data: records[]): records[] => {
  * @param data SimpleAdif
  */
 export const jarlsort = (data: SimpleAdif): SimpleAdif => {
+  /* istanbul ignore next */
   if (data.records === undefined) {
     return data;
   }
