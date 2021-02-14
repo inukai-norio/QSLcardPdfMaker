@@ -53,7 +53,7 @@ const jaSort = (data: Records[]): Records[] => {
  * JARL 指定形式でソート
  * @param data SimpleAdif
  */
-export const jarlsort = (data: SimpleAdif): SimpleAdif => {
+export default (data: SimpleAdif): SimpleAdif => {
   /* istanbul ignore next */
   if (data.records === undefined) {
     return data;

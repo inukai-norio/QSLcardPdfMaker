@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { readDdifAndParse } from '../src/lib/adif';
-import { jarlsort } from '../src/lib/jarlsort';
+import jarlsort from '../src/lib/jarlsort';
 
 describe('jarlsort', () => {
   it('jarlsort', () => {
