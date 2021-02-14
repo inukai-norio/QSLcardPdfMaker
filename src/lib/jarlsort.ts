@@ -1,7 +1,7 @@
 import { getAmateurRadioInfoByCallsign } from 'callsign/src/node';
 import { SimpleAdif } from 'adif-parser-ts';
 
-type records = {
+type Records = {
   [field: string]: string;
 };
 /**
@@ -35,7 +35,7 @@ const preset = (v: string) => {
  * JA局のQSOをソートする
  * @param data QSO records
  */
-const jaSort = (data: records[]): records[] => {
+const jaSort = (data: Records[]): Records[] => {
   // 'J'で始まる局とその他（'7' or '8'）に分ける。
   const dataJ = data.filter((v) => v.call[0] === 'J');
   const data7 = data.filter((v) => v.call[0] !== 'J');
@@ -68,6 +68,7 @@ export const jarlsort = (data: SimpleAdif): SimpleAdif => {
   const sortedRecordsJA = jaSort(recordsJA);
   const sortedRecordsDX = recordsDX.sort((a, b) => compare(a.call, b.call));
 
-  data.records = sortedRecordsJA.concat(sortedRecordsDX);
-  return data;
+  const ret = Object.assign(data);
+  ret.records = sortedRecordsJA.concat(sortedRecordsDX);
+  return ret;
 };

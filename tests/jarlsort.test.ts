@@ -13,5 +13,6 @@ describe('jarlsort', () => {
       return expect(records).not.toBeUndefined();
     }
     expect(records.map((v) => v.call)).toEqual(JSON.parse(expected));
+    return undefined;
   });
 });
