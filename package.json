@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "test:coverage": "npm test -- --coverage"
+    "test:coverage": "npm test -- --coverage",
+    "lint": "eslint './**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './**/*.{ts,tsx}' && prettier --write './**/*.{ts,tsx}'"
   },
   "repository": {
     "type": "git",
