@@ -27,3 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run test:coverage
+
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - run: npm ci
+    - run: npm run lint
