@@ -1,4 +1,4 @@
-[
+export default [
   {
     "band": "40M",
     "call": "JH1BTS",
