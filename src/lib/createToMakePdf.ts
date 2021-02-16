@@ -7,8 +7,8 @@ export type makePdf = {
   date: Date
   rst_rcvd: String,
   rst_sent: String,
-  power: String,
-  gridsquare: String,
+  power?: String,
+  gridsquare?: String,
 };
 
 const makeDate = (date: string, time: string): Date => {
@@ -21,7 +21,13 @@ export const createToMakePdf = (data: SimpleAdif): makePdf[] => {
   if (data.records === undefined) {
     throw new Error('data is undifined');
   }
+
   return data.records.map((v) => {
+    ['band', 'call', 'freq', 'mode', 'qso_date', 'time_on', 'rst_rcvd', 'rst_sent'].forEach((i) => {
+      if (v[i] === undefined) {
+        throw new Error(i + ' is undifined');
+      }
+    });
     return {
       band: v.band,
       call: v.call,
@@ -31,7 +37,7 @@ export const createToMakePdf = (data: SimpleAdif): makePdf[] => {
       rst_rcvd: v.rst_rcvd,
       rst_sent: v.rst_sent,
       power: v.tx_pwr,
-      gridsquare: v.gridsquare.slice(0, 4),
+      gridsquare: v.gridsquare === undefined ? undefined : v.gridsquare.slice(0, 4),
     }
   });
 }
