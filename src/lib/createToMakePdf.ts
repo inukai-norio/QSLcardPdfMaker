@@ -31,7 +31,7 @@ export const createToMakePdf = (data: SimpleAdif): makePdf[] => {
       rst_rcvd: v.rst_rcvd,
       rst_sent: v.rst_sent,
       power: v.tx_pwr,
-      gridsquare: v.gridsquare,
+      gridsquare: v.gridsquare.slice(0, 4),
     }
   });
 }
