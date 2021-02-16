@@ -4,12 +4,17 @@ export type makePdf = {
   call: String,
   frequency: String,
   mode: String,
-  date: String,
-  time: String,
+  date: Date
   rst_rcvd: String,
   rst_sent: String,
   power: String,
   gridsquare: String,
+};
+
+const makeDate = (date: string, time: string): Date => {
+  const d = date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6);
+  const t = time.slice(0, 2) + ':' + time.slice(2, 4) + ':' + time.slice(4);
+  return new Date(Date.parse(d + 'T' + t + 'Z'));
 };
 
 export const createToMakePdf = (data: SimpleAdif): makePdf[] => {
@@ -22,8 +27,7 @@ export const createToMakePdf = (data: SimpleAdif): makePdf[] => {
       call: v.call,
       frequency: v.freq,
       mode: v.mode === 'MFSK' ? v.submode : v.mode,
-      date: v.qso_date,
-      time: v.time_on,
+      date: makeDate(v.qso_date, v.time_on),
       rst_rcvd: v.rst_rcvd,
       rst_sent: v.rst_sent,
       power: v.tx_pwr,
