@@ -22,7 +22,7 @@ describe('createToMakePdf', () => {
       call: 'JJ1UTY',
       freq: '7.042900',
       mode: 'FT8',
-      qso_date: '2021216',
+      qso_date: '20210216',
       time_on: '000000',
       rst_rcvd: '-1',
       rst_sent: '-2',
