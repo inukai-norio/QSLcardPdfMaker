@@ -12,4 +12,5 @@ export const ptormm2pt = (data: ptuu) => {
   if (data.unit === 'mm') {
     return mm2pt(data.num);
   }
+  throw new Error('undefined unit')
 }
