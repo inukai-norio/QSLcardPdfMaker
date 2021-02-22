@@ -10,5 +10,8 @@ describe('alignment', () => {
   it('left bottom', () => {
     expect(alignment.leftBottom({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
+  it('right bottom', () => {
+    expect(alignment.rightBottom({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 45.983999999999995 });
+  });
 });
   
