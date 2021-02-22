@@ -21,4 +21,8 @@ describe('mm2pt', () => {
   it('tp or mm to pt 2', () => {
     expect(pt.ptormm2pt({ num: 1, unit: 'mm' })).toBe(72/25.4);
   })
+  
+  it('tp or mm to pt 3', () => {
+    expect(() => (pt.ptormm2pt(<any>{ num: 1, unit: 'nn' }))).toThrow('undefined unit');
+  })
 });
