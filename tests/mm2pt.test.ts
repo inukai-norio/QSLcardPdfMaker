@@ -1,11 +1,11 @@
-import * as mm2pt from '../src/lib/mm2pt';
+import * as pt from '../src/lib/pt';
 
 describe('mm2pt', () => {
   it('1mm', () => {
-    expect(mm2pt.mm2pt(1)).toBe(72/25.4);
+    expect(pt.mm2pt(1)).toBe(72/25.4);
   })
 
   it('1pt', () => {
-    expect(mm2pt.mm2pt(25.4/72)).toBe(1);
+    expect(pt.mm2pt(25.4/72)).toBe(1);
   })
 });
