@@ -3,9 +3,20 @@ type ptuu = {
   unit: 'pt' | 'mm',
 }
 
-export default (data: number | ptuu) => {
+export default (data: number | ptuu | string) => {
   if (typeof data === 'number') {
     return data;
+  }
+  if (typeof data === 'string') {
+    const num = parseFloat(data);
+    const unit = data.slice(-2);
+    if (unit === 'pt') {
+      return num;
+    }
+    if (unit === 'mm') {
+      return 72/25.4 * num;
+    }
+    throw new Error('undefined unit')
   }
   if (data.unit === 'pt') {
     return data.num;
