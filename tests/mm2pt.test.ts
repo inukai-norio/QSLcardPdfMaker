@@ -15,4 +15,12 @@ describe('mm2pt', () => {
   it('tp or mm to pt 4', () => {
     expect(pt(5.5)).toBe(5.5);
   })
+  
+  it('mm to pt', () => {
+    expect(pt('1mm')).toBe(72/25.4);
+  })
+  
+  it('pt to pt', () => {
+    expect(pt('12.5pt')).toBe(12.5);
+  })
 });
