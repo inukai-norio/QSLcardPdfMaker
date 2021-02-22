@@ -15,4 +15,10 @@ describe('mm2pt', () => {
   it('tp to tp 5.5', () => {
     expect(pt.pt2pt(5.5)).toBe(5.5);
   })
+  it('tp or mm to pt 1', () => {
+    expect(pt.ptormm2pt({ num: 5.5, unit: 'pt' })).toBe(5.5);
+  })
+  it('tp or mm to pt 2', () => {
+    expect(pt.ptormm2pt({ num: 1, unit: 'mm' })).toBe(72/25.4);
+  })
 });
