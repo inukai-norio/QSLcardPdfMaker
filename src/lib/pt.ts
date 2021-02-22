@@ -1,13 +1,9 @@
-type ptuu = {
-  num: number,
-  unit: 'pt' | 'mm',
-}
-export default (data: ptuu) => {
-  if (data.unit === 'pt') {
-    return data.num;
+export default (num: number, unit: 'pt' | 'mm') => {
+  if (unit === 'pt') {
+    return num;
   }
-  if (data.unit === 'mm') {
-    return 72/25.4 * data.num;
+  if (unit === 'mm') {
+    return 72/25.4 * num;
   }
   throw new Error('undefined unit')
 }
