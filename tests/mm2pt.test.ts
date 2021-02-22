@@ -9,6 +9,7 @@ describe('mm2pt', () => {
   });
 
   it('tp or mm to pt 3', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(() => pt(<any>{ num: 1, unit: 'nn' })).toThrow('undefined unit');
   });
 
