@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { readDdifAndParse } from '../src/lib/adif';
+import readDdifAndParse from '../src/lib/adif';
 import { createToMakePdf } from '../src/lib/createToMakePdf';
 import expected from './data/createToMakePdf/expected';
 
