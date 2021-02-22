@@ -1,7 +1,7 @@
 import * as mm2pt from '../src/lib/mm2pt';
 
 describe('mm2pt', () => {
-  it('mm2pt', () => {
+  it('1mm', () => {
     expect(mm2pt.mm2pt(1)).toBe(72/25.4);
   })
 
