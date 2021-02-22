@@ -1,4 +1,4 @@
-import pt from '../src/lib/pt';
+import pt from '../src/lib/pdf/pt';
 
 describe('mm2pt', () => {
   it('tp or mm to pt 1', () => {
