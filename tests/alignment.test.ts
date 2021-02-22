@@ -8,16 +8,16 @@ describe('alignment', () => {
     testFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
   })
   it('left bottom', () => {
-    expect(alignment.leftBottom({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
+    expect(alignment.text({ alignment: { vertical: 'bottom', horizontal: 'left' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
   it('right bottom', () => {
-    expect(alignment.rightBottom({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 66 });
+    expect(alignment.text({ alignment: { vertical: 'bottom', horizontal: 'right' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 66 });
   });
   it('left top', () => {
-    expect(alignment.leftTop({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 54.9 });
+    expect(alignment.text({ alignment: { vertical: 'top', horizontal: 'left' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 54.9 });
   });
   it('right top', () => {
-    expect(alignment.rightTop({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 54.9 });
+    expect(alignment.text({ alignment: { vertical: 'top', horizontal: 'right' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 54.9 });
   });
 });
   
