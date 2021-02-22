@@ -13,5 +13,11 @@ describe('alignment', () => {
   it('right bottom', () => {
     expect(alignment.rightBottom({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 45.983999999999995 });
   });
+  it('left top', () => {
+    expect(alignment.leftTop({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 12.899999999999999, y: 66 });
+  });
+  it('right top', () => {
+    expect(alignment.rightTop({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 12.899999999999999, y: 45.983999999999995 });
+  });
 });
   
