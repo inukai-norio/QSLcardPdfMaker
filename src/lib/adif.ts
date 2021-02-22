@@ -1,7 +1,7 @@
 import * as fs from 'fs';
-import { AdifParser } from 'adif-parser-ts';
+import { AdifParser, SimpleAdif } from 'adif-parser-ts';
 
-export const readDdifAndParse = (filename: string) => {
+export default (filename: string): SimpleAdif => {
   const fileContent = fs.readFileSync(filename, {
     encoding: 'utf-8',
   });
