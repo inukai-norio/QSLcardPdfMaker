@@ -12,7 +12,7 @@ describe('mm2pt', () => {
     expect(() => (pt(1, <any>'nn'))).toThrow('undefined unit');
   })
   
-  it('tp or mm to pt 1', () => {
+  it('tp or mm to pt 4', () => {
     expect(pt(5.5)).toBe(5.5);
   })
 });
