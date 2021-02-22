@@ -1,3 +1,3 @@
 export const mm2pt = (mm: number) => {
-  return 72/25.4;
+  return 72/25.4 * mm;
 };
