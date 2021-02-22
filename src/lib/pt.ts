@@ -1,4 +1,4 @@
-export default (num: number, unit: 'pt' | 'mm') => {
+export default (num: number, unit: 'pt' | 'mm' = 'pt') => {
   if (unit === 'pt') {
     return num;
   }
