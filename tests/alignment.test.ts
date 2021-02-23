@@ -19,5 +19,22 @@ describe('alignment', () => {
   it('right top', () => {
     expect(alignment.text({ alignment: { vertical: 'top', horizontal: 'right' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 54.9 });
   });
+
+  it('center top', () => {
+    expect(alignment.text({ alignment: { vertical: 'top', horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 54.9 });
+  });
+  it('center bottom', () => {
+    expect(alignment.text({ alignment: { vertical: 'bottom', horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 66 });
+  });
+  it('left middle', () => {
+    expect(alignment.text({ alignment: { vertical: 'middle', horizontal: 'left' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 60.45 });
+  });
+  it('right middle', () => {
+    expect(alignment.text({ alignment: { vertical: 'middle', horizontal: 'right' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 60.45 });
+  });
+
+  it('center middle', () => {
+    expect(alignment.text({ alignment: { vertical: 'middle', horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 60.45 });
+  });
 });
   
