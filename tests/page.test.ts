@@ -218,3 +218,28 @@ describe('drawText (no setFont)', () => {
     ).toThrow();
   });
 });
+
+describe('drawText (mm)', () => {
+  it('string', () => {
+    pagePage.drawText('aaa', { x: '24mm', y: '66mm' });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({ x: 68.03149606299213, y: 187.08661417322836 });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      text: 'aaa',
+    });
+  });
+  it('string', () => {
+    pagePage.drawText('aaa', { x: { num: 24, unit: 'mm' }, y: { num: 66, unit: 'mm' } });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({ x: 68.03149606299213, y: 187.08661417322836 });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      text: 'aaa',
+    });
+  });
+});
