@@ -63,7 +63,7 @@ describe('drawText (setFont)', () => {
     pagePage.drawText('aaa', { alignment: { vertical: 'middle', horizontal: 'center' } });
     expect(originPageMock.drawText.mock.calls.length).toBe(1);
     expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
-    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({ x: -10.008000000000001, y: -5.549999999999997 });
-    expect(originPageMock.drawText.mock.results[0].value).toEqual({ x: -10.008000000000001, y: -5.549999999999997, text: 'aaa' });
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({ x: -10.008000000000001, y: -5.550000000000001 });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({ x: -10.008000000000001, y: -5.550000000000001, text: 'aaa' });
   });
 });
