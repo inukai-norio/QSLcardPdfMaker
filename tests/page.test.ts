@@ -7,7 +7,10 @@ describe('page', () => {
   let pagePage: page.Page;
   beforeEach(async () => {
     originPageMock = {
-      drawText: jest.fn((text: string, options?: PDFPageDrawTextOptions) => Object.assign(options, { text }))
+      drawText: jest.fn((text: string, options?: PDFPageDrawTextOptions) => {
+        const o = { ...options}
+        return Object.assign(o, { text });
+      })
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     originPage = <any>originPageMock;
