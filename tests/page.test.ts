@@ -26,7 +26,7 @@ describe('drawText', () => {
     const pdfDoc = await PDFDocument.create();
     testFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
     pagePage.setFont(testFont);
-    pagePage.setSize(12);
+    pagePage.setFontSize(12);
   })
   it('std', () => {
     pagePage.drawText('aaa', { x: 24, y: 66 });
