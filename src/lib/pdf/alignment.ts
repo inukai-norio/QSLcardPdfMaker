@@ -1,9 +1,9 @@
 import { PDFFont } from "pdf-lib";
 
 type TextData = {
-  alignment: {
-    vertical: 'bottom' | 'middle' | 'top',
-    horizontal: 'left' | 'center' | 'right',
+  alignment?: {
+    vertical?: 'bottom' | 'middle' | 'top',
+    horizontal?: 'left' | 'center' | 'right',
   },
   text: string,
   font: PDFFont,
@@ -46,8 +46,11 @@ export const rightTop = (data: TextData): Point => {
 export const text = (data: TextData): Point => {
   const l = data.font.widthOfTextAtSize(data.text, data.size);
   const h = data.font.heightAtSize(data.size)
-  if (data.alignment.horizontal === 'left') {
-    if (data.alignment.vertical === 'bottom') {
+  if (data.alignment === undefined) {
+    return { x: data.x, y: data.y };
+  }
+  if (data.alignment.horizontal === undefined || data.alignment.horizontal === 'left') {
+    if (data.alignment.vertical === undefined || data.alignment.vertical === 'bottom') {
       return { x: data.x, y: data.y };
     }
     if (data.alignment.vertical === 'top') {
@@ -58,7 +61,7 @@ export const text = (data: TextData): Point => {
     }
   }
   if (data.alignment.horizontal === 'right') {
-    if (data.alignment.vertical === 'bottom') {
+    if (data.alignment.vertical === undefined || data.alignment.vertical === 'bottom') {
       return { x: data.x - l, y: data.y };
     }
     if (data.alignment.vertical === 'top') {
@@ -69,7 +72,7 @@ export const text = (data: TextData): Point => {
     }
   }
   if (data.alignment.horizontal === 'center') {
-    if (data.alignment.vertical === 'bottom') {
+    if (data.alignment.vertical === undefined || data.alignment.vertical === 'bottom') {
       return { x: data.x - l / 2, y: data.y };
     }
     if (data.alignment.vertical === 'top') {
