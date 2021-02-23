@@ -21,7 +21,7 @@ it('orgin', () => {
 });
 
 describe('drawText', () => {
-  it('stg', () => {
+  it('std', () => {
     pagePage.drawText('aaa', { x: 24, y: 66 });
     expect(originPageMock.drawText.mock.calls.length).toBe(1);
     expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
