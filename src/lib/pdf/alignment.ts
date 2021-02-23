@@ -82,5 +82,5 @@ export const text = (data: TextData): Point => {
       return { x: data.x - l / 2, y: data.y - h / 2 };
     }
   }
-  return { x: data.x, y: data.y };
+  throw new Error('undefined');
 }
