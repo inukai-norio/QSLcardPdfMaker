@@ -234,7 +234,7 @@ describe('drawText (mm)', () => {
       text: 'aaa',
     });
   });
-  it('string', () => {
+  it('ptuu', () => {
     pagePage.drawText('aaa', {
       x: { num: 24, unit: 'mm' },
       y: { num: 66, unit: 'mm' },
