@@ -49,6 +49,9 @@ export const text = (data: TextData): Point => {
   if (data.alignment === undefined) {
     return { x: data.x, y: data.y };
   }
+  if (typeof data.alignment !== 'object') {
+    throw new Error('alignment is not object')
+  }
   if (data.alignment.horizontal === undefined || data.alignment.horizontal === 'left') {
     if (data.alignment.vertical === undefined || data.alignment.vertical === 'bottom') {
       return { x: data.x, y: data.y };
