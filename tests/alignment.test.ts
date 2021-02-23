@@ -36,5 +36,15 @@ describe('alignment', () => {
   it('center middle', () => {
     expect(alignment.text({ alignment: { vertical: 'middle', horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 60.45 });
   });
+
+  it('undefined undefined', () => {
+    expect(alignment.text({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
+  });
+  it('center undefined', () => {
+    expect(alignment.text({ alignment: { horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 66 });
+  });
+  it('undefined middle', () => {
+    expect(alignment.text({ alignment: { vertical: 'middle' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 60.45 });
+  });
 });
   
