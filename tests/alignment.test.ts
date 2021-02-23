@@ -41,22 +41,22 @@ describe('alignment', () => {
     expect(alignment.text({ text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
   it('left undefined', () => {
-    expect(alignment.text({ alignment: { horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
+    expect(alignment.text({ alignment: { horizontal: 'left' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
   it('center undefined', () => {
     expect(alignment.text({ alignment: { horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 13.991999999999999, y: 66 });
   });
   it('right undefined', () => {
-    expect(alignment.text({ alignment: { horizontal: 'center' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 66 });
+    expect(alignment.text({ alignment: { horizontal: 'right' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 3.983999999999998, y: 66 });
   });
   it('undefined top', () => {
-    expect(alignment.text({ alignment: { vertical: 'middle' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 54.9 });
+    expect(alignment.text({ alignment: { vertical: 'top' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 54.9 });
   });
   it('undefined middle', () => {
     expect(alignment.text({ alignment: { vertical: 'middle' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 60.45 });
   });
   it('undefined bottom', () => {
-    expect(alignment.text({ alignment: { vertical: 'middle' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
+    expect(alignment.text({ alignment: { vertical: 'bottom' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
 });
   
