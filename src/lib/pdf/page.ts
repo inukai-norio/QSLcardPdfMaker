@@ -42,8 +42,11 @@ export class Page {
   }
 
   drawText(text: string, options?: PDFPageDrawTextOptionsFix): void {
+    if (options === undefined) {
+      return this.originPage.drawText(text);
+    }
     const x = (() => {
-      if (options !== undefined && options.x !== undefined) {
+      if (options.x !== undefined) {
         const v = pt(options.x);
         Object.assign(options, { x: v });
         return v;
@@ -51,14 +54,14 @@ export class Page {
       return 0;
     })();
     const y = (() => {
-      if (options !== undefined && options.y !== undefined) {
+      if (options.y !== undefined) {
         const v = pt(options.y);
         Object.assign(options, { y: v });
         return v;
       }
       return 0;
     })();
-    if (options !== undefined && options.alignment !== undefined) {
+    if (options.alignment !== undefined) {
       const font: PDFFont = (() => {
         if (options.font === undefined) {
           if (this.font !== undefined) {
