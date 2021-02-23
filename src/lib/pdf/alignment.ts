@@ -2,8 +2,8 @@ import { PDFFont } from "pdf-lib";
 
 type TextData = {
   alignment: {
-    vertical: 'bottom' | 'top',
-    horizontal: 'left' | 'right',
+    vertical: 'bottom' | 'middle' | 'top',
+    horizontal: 'left' | 'center' | 'right',
   },
   text: string,
   font: PDFFont,
@@ -53,6 +53,9 @@ export const text = (data: TextData): Point => {
     if (data.alignment.vertical === 'top') {
       return { x: data.x, y: data.y - h };
     }
+    if (data.alignment.vertical === 'middle') {
+      return { x: data.x, y: data.y - h / 2 };
+    }
   }
   if (data.alignment.horizontal === 'right') {
     if (data.alignment.vertical === 'bottom') {
@@ -60,6 +63,20 @@ export const text = (data: TextData): Point => {
     }
     if (data.alignment.vertical === 'top') {
       return { x: data.x - l, y: data.y - h };
+    }
+    if (data.alignment.vertical === 'middle') {
+      return { x: data.x - l, y: data.y - h / 2 };
+    }
+  }
+  if (data.alignment.horizontal === 'center') {
+    if (data.alignment.vertical === 'bottom') {
+      return { x: data.x - l / 2, y: data.y };
+    }
+    if (data.alignment.vertical === 'top') {
+      return { x: data.x - l / 2, y: data.y - h };
+    }
+    if (data.alignment.vertical === 'middle') {
+      return { x: data.x - l / 2, y: data.y - h / 2 };
     }
   }
   return { x: data.x, y: data.y };
