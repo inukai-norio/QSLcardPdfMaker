@@ -54,8 +54,8 @@ export class Page {
         text,
         font,
         size,
-        x: <any>options.x,
-        y: <any>options.y,
+        x: options.x === undefined ? 0 : options.x,
+        y: options.y === undefined ? 0 : options.y,
       })
       Object.assign(options, a);
       Object.assign(options, { alignment: undefined });
