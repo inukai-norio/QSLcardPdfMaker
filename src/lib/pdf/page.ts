@@ -1,5 +1,19 @@
-import { PDFFont, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
+import { PDFFont, PDFPage, PDFPageDrawTextOptions, values } from 'pdf-lib';
 import { Alignment, text as alignmentText } from './alignment';
+import pt, { Ptuu } from './pt';
+
+interface PDFPageDrawTextOptionsFixWeaken extends PDFPageDrawTextOptions {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  x?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  y?: any;
+}
+
+interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
+  alignment?: Alignment;
+  x?: number | string | Ptuu;
+  y?: number | string | Ptuu;
+}
 
 export const a = 1;
 export class Page {
@@ -29,8 +43,24 @@ export class Page {
 
   drawText(
     text: string,
-    options?: PDFPageDrawTextOptions & { alignment?: Alignment }
+    options?: PDFPageDrawTextOptionsFix
   ): void {
+    const x = (() => {
+      if (options !== undefined && options.x !== undefined) {
+        const v = pt(options.x);
+        Object.assign(options, { x: v });
+        return v;
+      }
+      return 0;
+    })();
+    const y = (() => {
+      if (options !== undefined && options.y !== undefined) {
+        const v = pt(options.y);
+        Object.assign(options, { y: v });
+        return v;
+      }
+      return 0;
+    })();
     if (options !== undefined && options.alignment !== undefined) {
       const font: PDFFont = (() => {
         if (options.font === undefined) {
@@ -57,12 +87,12 @@ export class Page {
           text,
           font,
           size,
-          x: options.x === undefined ? 0 : options.x,
-          y: options.y === undefined ? 0 : options.y,
+          x,
+          y,
         })
       );
       Object.assign(options, { alignment: undefined });
     }
-    this.originPage.drawText(text, options);
+    this.originPage.drawText(text, <PDFPageDrawTextOptions>options);
   }
 }

@@ -1,4 +1,4 @@
-type Ptuu = {
+export type Ptuu = {
   num: number;
   unit: 'pt' | 'mm';
 };
