@@ -4,6 +4,8 @@ import pt, { Ptuu } from './pt';
 
 interface PDFPageDrawTextOptionsFixWeaken extends PDFPageDrawTextOptions {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  size?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   x?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   y?: any;
@@ -11,6 +13,7 @@ interface PDFPageDrawTextOptionsFixWeaken extends PDFPageDrawTextOptions {
 
 interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
   alignment?: Alignment;
+  size?: number | string | Ptuu;
   x?: number | string | Ptuu;
   y?: number | string | Ptuu;
 }
@@ -61,6 +64,14 @@ export class Page {
       }
       return 0;
     })();
+    const fontSize: number | undefined = (() => {
+      if (options.size === undefined) {
+        return undefined;
+      }
+      const v = pt(options.size);
+      Object.assign(options, { size: v });
+      return v;
+    })();
     if (options.alignment !== undefined) {
       const font: PDFFont = (() => {
         if (options.font === undefined) {
@@ -72,13 +83,13 @@ export class Page {
         return options.font;
       })();
       const size: number = (() => {
-        if (options.size === undefined) {
+        if (fontSize === undefined) {
           if (this.fontSize !== undefined) {
             return this.fontSize;
           }
           throw new Error();
         }
-        return options.size;
+        return fontSize;
       })();
       Object.assign(
         options,
