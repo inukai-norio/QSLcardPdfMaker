@@ -104,6 +104,6 @@ export class Page {
       );
       Object.assign(options, { alignment: undefined });
     }
-    this.originPage.drawText(text, <PDFPageDrawTextOptions>options);
+    return this.originPage.drawText(text, <PDFPageDrawTextOptions>options);
   }
 }
