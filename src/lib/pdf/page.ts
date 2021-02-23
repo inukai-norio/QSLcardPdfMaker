@@ -31,7 +31,14 @@ export class Page {
 
   drawText(text: string, options?: PDFPageDrawTextOptions & { alignment?: Alignment }): void {
     if (options !== undefined && options.alignment !== undefined) {
-      const a = alignmentText({  alignment: options.alignment, text, font: <any>options.font, size: <any>options.size, x: <any>options.x, y: <any>options.y })
+      const a = alignmentText({
+        alignment: options.alignment,
+        text,
+        font: <any>options.font,
+        size: <any>options.size,
+        x: <any>options.x,
+        y: <any>options.y,
+      })
       Object.assign(options, a);
       Object.assign(options, { alignment: undefined });
     }
