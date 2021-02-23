@@ -67,5 +67,10 @@ describe('alignment', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((() => alignment.text({ alignment: <any>{ vertical: 'hoge' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 }))).toThrow();
   });
+  
+  it('alignment is hoge', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((() => alignment.text(<any>{ alignment: 'hoge', text: 'aaa', font: testFont, size: 12, x: 24, y: 66 }))).toThrow();
+  });
 });
   
