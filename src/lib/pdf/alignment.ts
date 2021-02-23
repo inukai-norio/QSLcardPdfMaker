@@ -1,6 +1,10 @@
 import { PDFFont } from "pdf-lib";
 
 type TextData = {
+  alignment: {
+    vertical: 'bottom' | 'top',
+    horizontal: 'left' | 'right',
+  },
   text: string,
   font: PDFFont,
   size: number,
@@ -37,4 +41,26 @@ export const rightTop = (data: TextData): Point => {
   const l = data.font.widthOfTextAtSize(data.text, data.size);
   const h = data.font.heightAtSize(data.size)
   return { x: data.x - l, y: data.y - h };
+}
+
+export const text = (data: TextData): Point => {
+  const l = data.font.widthOfTextAtSize(data.text, data.size);
+  const h = data.font.heightAtSize(data.size)
+  if (data.alignment.horizontal === 'left') {
+    if (data.alignment.vertical === 'bottom') {
+      return { x: data.x, y: data.y };
+    }
+    if (data.alignment.vertical === 'top') {
+      return { x: data.x, y: data.y - h };
+    }
+  }
+  if (data.alignment.horizontal === 'right') {
+    if (data.alignment.vertical === 'bottom') {
+      return { x: data.x - l, y: data.y };
+    }
+    if (data.alignment.vertical === 'top') {
+      return { x: data.x - l, y: data.y - h };
+    }
+  }
+  return { x: data.x, y: data.y };
 }
