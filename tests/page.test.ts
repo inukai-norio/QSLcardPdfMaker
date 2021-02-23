@@ -252,3 +252,42 @@ describe('drawText (mm)', () => {
     });
   });
 });
+
+describe('drawText (mm size)', () => {
+  it('string', () => {
+    pagePage.drawText('aaa', { x: '24mm', y: '66mm', size: '9mm' });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      size: 25.51181102362205,
+    });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      size: 25.51181102362205,
+      text: 'aaa',
+    });
+  });
+  it('ptuu', () => {
+    pagePage.drawText('aaa', {
+      x: { num: 24, unit: 'mm' },
+      y: { num: 66, unit: 'mm' },
+      size: { num: 9, unit: 'mm' },
+    });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      size: 25.51181102362205,
+    });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      size: 25.51181102362205,
+      text: 'aaa',
+    });
+  });
+});
