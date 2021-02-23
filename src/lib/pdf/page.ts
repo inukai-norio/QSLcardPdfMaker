@@ -1,4 +1,7 @@
 import { PDFPage, PDFPageDrawTextOptions } from "pdf-lib";
+import { Alignment } from "./alignment";
+
+
 
 export const a = 1;
 export class Page {
@@ -12,7 +15,7 @@ export class Page {
     return this.originPage;
   }
 
-  drawText(text: string, options?: PDFPageDrawTextOptions): void {
+  drawText(text: string, options?: PDFPageDrawTextOptions & { alignment?: Alignment }): void {
     this.originPage.drawText(text, options);
   }
 }
