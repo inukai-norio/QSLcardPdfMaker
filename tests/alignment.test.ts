@@ -58,5 +58,14 @@ describe('alignment', () => {
   it('undefined bottom', () => {
     expect(alignment.text({ alignment: { vertical: 'bottom' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 })).toEqual({ x: 24, y: 66 });
   });
+  
+  it('hoge undefined', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((() => alignment.text({ alignment: <any>{ horizontal: 'hoge' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 }))).toThrow();
+  });
+  it('undefined hoge', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((() => alignment.text({ alignment: <any>{ vertical: 'hoge' }, text: 'aaa', font: testFont, size: 12, x: 24, y: 66 }))).toThrow();
+  });
 });
   
