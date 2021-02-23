@@ -49,15 +49,14 @@ export class Page {
         }
         return options.size;
       })();
-      const a = alignmentText({
+      Object.assign(options, alignmentText({
         alignment: options.alignment,
         text,
         font,
         size,
         x: options.x === undefined ? 0 : options.x,
         y: options.y === undefined ? 0 : options.y,
-      })
-      Object.assign(options, a);
+      }));
       Object.assign(options, { alignment: undefined });
     }
     this.originPage.drawText(text, options);
