@@ -31,31 +31,29 @@ export class Page {
 
   drawText(text: string, options?: PDFPageDrawTextOptions & { alignment?: Alignment }): void {
     if (options !== undefined && options.alignment !== undefined) {
-      let font: PDFFont;
-      if (options.font === undefined) {
-        if (this.font !== undefined) {
-          font = this.font;
-        }else {
+      const font: PDFFont = (() => {
+        if (options.font === undefined) {
+          if (this.font !== undefined) {
+            return this.font;
+          }
           throw new Error();
         }
-      } else {
-        font = options.font;
-      }
-      let size: number;
-      if (options.size === undefined) {
-        if (this.fontSize !== undefined) {
-          size = this.fontSize;
-        }else {
+        return options.font;
+      })();
+      const size: number = (() => {
+        if (options.size === undefined) {
+          if (this.fontSize !== undefined) {
+            return this.fontSize;
+          }
           throw new Error();
         }
-      } else {
-        size = options.size;
-      }
+        return options.size;
+      })();
       const a = alignmentText({
         alignment: options.alignment,
         text,
-        font: <any>font,
-        size: <any>size,
+        font,
+        size,
         x: <any>options.x,
         y: <any>options.y,
       })
