@@ -1,4 +1,4 @@
-import { PDFFont, PDFPage, PDFPageDrawTextOptions, values } from 'pdf-lib';
+import { PDFFont, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
 import { Alignment, text as alignmentText } from './alignment';
 import pt, { Ptuu } from './pt';
 
@@ -41,10 +41,7 @@ export class Page {
     this.originPage.setFontSize(this.fontSize);
   }
 
-  drawText(
-    text: string,
-    options?: PDFPageDrawTextOptionsFix
-  ): void {
+  drawText(text: string, options?: PDFPageDrawTextOptionsFix): void {
     const x = (() => {
       if (options !== undefined && options.x !== undefined) {
         const v = pt(options.x);
