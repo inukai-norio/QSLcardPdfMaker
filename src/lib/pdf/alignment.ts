@@ -1,10 +1,12 @@
 import { PDFFont } from 'pdf-lib';
 
+export type Alignment = {
+  vertical?: 'bottom' | 'middle' | 'top';
+  horizontal?: 'left' | 'center' | 'right';
+};
+
 type TextData = {
-  alignment?: {
-    vertical?: 'bottom' | 'middle' | 'top';
-    horizontal?: 'left' | 'center' | 'right';
-  };
+  alignment?: Alignment;
   text: string;
   font: PDFFont;
   size: number;
