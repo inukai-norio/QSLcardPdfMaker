@@ -16,4 +16,11 @@ describe('page', () => {
   it('orgin', () => {
     expect(pagePage.orgin).toEqual(originPage);
   });
+  it('drawText', () => {
+    pagePage.drawText('aaa', { x: 24, y: 66 });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({ x: 24, y: 66 });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({ x: 24, y: 66, text: 'aaa' });
+  });
 });
