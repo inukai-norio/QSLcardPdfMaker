@@ -39,8 +39,8 @@ export class Page {
     this.originPage.setFont(this.font);
   }
 
-  setFontSize(size: number): void {
-    this.fontSize = size;
+  setFontSize(size: number | string | Ptuu): void {
+    this.fontSize = pt(size);
     this.originPage.setFontSize(this.fontSize);
   }
 
