@@ -1,7 +1,5 @@
-import { PDFFont, PDFPage, PDFPageDrawTextOptions } from "pdf-lib";
-import { Alignment, text as alignmentText } from "./alignment";
-
-
+import { PDFFont, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
+import { Alignment, text as alignmentText } from './alignment';
 
 export const a = 1;
 export class Page {
@@ -29,7 +27,10 @@ export class Page {
     this.originPage.setFontSize(this.fontSize);
   }
 
-  drawText(text: string, options?: PDFPageDrawTextOptions & { alignment?: Alignment }): void {
+  drawText(
+    text: string,
+    options?: PDFPageDrawTextOptions & { alignment?: Alignment }
+  ): void {
     if (options !== undefined && options.alignment !== undefined) {
       const font: PDFFont = (() => {
         if (options.font === undefined) {
@@ -49,14 +50,17 @@ export class Page {
         }
         return options.size;
       })();
-      Object.assign(options, alignmentText({
-        alignment: options.alignment,
-        text,
-        font,
-        size,
-        x: options.x === undefined ? 0 : options.x,
-        y: options.y === undefined ? 0 : options.y,
-      }));
+      Object.assign(
+        options,
+        alignmentText({
+          alignment: options.alignment,
+          text,
+          font,
+          size,
+          x: options.x === undefined ? 0 : options.x,
+          y: options.y === undefined ? 0 : options.y,
+        })
+      );
       Object.assign(options, { alignment: undefined });
     }
     this.originPage.drawText(text, options);

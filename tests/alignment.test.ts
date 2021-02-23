@@ -198,7 +198,7 @@ describe('text', () => {
 
   it('hoge undefined', () => {
     expect(() =>
-    alignment.text({
+      alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         alignment: <any>{ horizontal: 'hoge' },
         text: 'aaa',
@@ -211,7 +211,7 @@ describe('text', () => {
   });
   it('undefined hoge', () => {
     expect(() =>
-    alignment.text({
+      alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         alignment: <any>{ vertical: 'hoge' },
         text: 'aaa',
@@ -225,8 +225,8 @@ describe('text', () => {
 
   it('alignment is hoge', () => {
     expect(() =>
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    alignment.text(<any>{
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      alignment.text(<any>{
         alignment: 'hoge',
         text: 'aaa',
         font: testFont,
