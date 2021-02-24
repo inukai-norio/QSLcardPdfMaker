@@ -37,6 +37,16 @@ describe('drawText (setFont)', () => {
     pagePage.setFont(testFont);
     pagePage.setFontSize(12);
   });
+  
+  it('no options', () => {
+    pagePage.drawText('aaa');
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual(undefined);
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      text: 'aaa',
+    });
+  });
   it('std', () => {
     pagePage.drawText('aaa', { x: 24, y: 66 });
     expect(originPageMock.drawText.mock.calls.length).toBe(1);
