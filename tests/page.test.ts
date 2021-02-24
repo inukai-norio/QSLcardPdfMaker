@@ -19,7 +19,7 @@ beforeEach(async () => {
     }),
     setFont: jest.fn((font: PDFFont) => font),
     setFontSize: jest.fn((size: number) => size),
-    drawLine: jest.fn((options: unknown ) => options),
+    drawLine: jest.fn((options: unknown) => options),
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   originPage = <any>originPageMock;
@@ -295,7 +295,10 @@ describe('drawText (mm size)', () => {
 
 describe('drawLine (mm size)', () => {
   it('string', () => {
-    pagePage.drawLine({ start: { x: '24mm', y: '66mm' }, end: { x: '66mm', y: '24mm' } });
+    pagePage.drawLine({
+      start: { x: '24mm', y: '66mm' },
+      end: { x: '66mm', y: '24mm' },
+    });
     expect(originPageMock.drawLine.mock.calls.length).toBe(1);
     expect(originPageMock.drawLine.mock.calls[0][0]).toEqual({
       start: {
@@ -324,7 +327,7 @@ describe('drawLine (mm size)', () => {
         x: { num: 24, unit: 'mm' },
         y: { num: 66, unit: 'mm' },
       },
-      
+
       end: {
         x: { num: 66, unit: 'mm' },
         y: { num: 24, unit: 'mm' },

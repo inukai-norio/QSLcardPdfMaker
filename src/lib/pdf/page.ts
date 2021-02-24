@@ -1,4 +1,12 @@
-import { Color, LineCapStyle, PDFFont, PDFName, PDFNumber, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
+import {
+  Color,
+  LineCapStyle,
+  PDFFont,
+  PDFName,
+  PDFNumber,
+  PDFPage,
+  PDFPageDrawTextOptions,
+} from 'pdf-lib';
 import { Alignment, text as alignmentText } from './alignment';
 import pt, { Ptuu } from './pt';
 
@@ -120,9 +128,12 @@ export class Page {
 
   drawLine(options: PDFPageDrawLineOptionsFix): void {
     const { start, end } = options;
-    const convertPt = (v: { x: number | string | Ptuu; y: number | string | Ptuu }) => ({ x: pt(v.x), y: pt(v.y) });
+    const convertPt = (v: {
+      x: number | string | Ptuu;
+      y: number | string | Ptuu;
+    }) => ({ x: pt(v.x), y: pt(v.y) });
 
-    const o = {...options};
+    const o = { ...options };
     o.start = convertPt(start);
     o.end = convertPt(end);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
