@@ -17,6 +17,10 @@ interface PDFPageDrawTextOptionsFixWeaken extends PDFPageDrawTextOptions {
   x?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   y?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  lineHeight?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  maxWidth?: any;
 }
 
 interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
@@ -24,6 +28,8 @@ interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
   size?: number | string | Ptuu;
   x?: number | string | Ptuu;
   y?: number | string | Ptuu;
+  lineHeight?: number | string | Ptuu;
+  maxWidth?: number | string | Ptuu;
 }
 
 interface PDFPageDrawLineOptionsFix {
@@ -83,6 +89,14 @@ export class Page {
       }
       return 0;
     })();
+    if (options.lineHeight !== undefined) {
+      const v = options.lineHeight;
+      Object.assign(options, { lineHeight: pt(v) });
+    }
+    if (options.maxWidth !== undefined) {
+      const v = options.maxWidth;
+      Object.assign(options, { maxWidth: pt(v) });
+    }
     const fontSize: number | undefined = (() => {
       if (options.size === undefined) {
         return undefined;
