@@ -364,7 +364,7 @@ describe('drawText (lineHeight etc)', () => {
     expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
     expect(originPageMock.drawText.mock.calls[0][1]).toEqual({
       x: 68.03149606299213,
-      y: 187.08661417322836,
+      y: 66,
       lineHeight: 187.08661417322836,
     });
     expect(originPageMock.drawText.mock.results[0].value).toEqual({
