@@ -1,4 +1,4 @@
-import { PDFFont, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
+import { Color, LineCapStyle, PDFFont, PDFName, PDFNumber, PDFPage, PDFPageDrawTextOptions } from 'pdf-lib';
 import { Alignment, text as alignmentText } from './alignment';
 import pt, { Ptuu } from './pt';
 
@@ -16,6 +16,17 @@ interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
   size?: number | string | Ptuu;
   x?: number | string | Ptuu;
   y?: number | string | Ptuu;
+}
+
+interface PDFPageDrawLineOptionsFix {
+  start: { x: number | string | Ptuu; y: number | string | Ptuu };
+  end: { x: number | string | Ptuu; y: number | string | Ptuu };
+  thickness?: number | PDFNumber;
+  color?: Color;
+  dashArray?: (number | PDFNumber)[];
+  dashPhase?: number | PDFNumber;
+  lineCap?: LineCapStyle;
+  graphicsState?: string | PDFName;
 }
 
 export const a = 1;
@@ -105,5 +116,16 @@ export class Page {
       Object.assign(options, { alignment: undefined });
     }
     return this.originPage.drawText(text, <PDFPageDrawTextOptions>options);
+  }
+
+  drawLine(options: PDFPageDrawLineOptionsFix): void {
+    const { start, end } = options;
+    const convertPt = (v: { x: number | string | Ptuu; y: number | string | Ptuu }) => ({ x: pt(v.x), y: pt(v.y) });
+
+    const o = {...options};
+    o.start = convertPt(start);
+    o.end = convertPt(end);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.originPage.drawLine(<any>o);
   }
 }
