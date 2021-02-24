@@ -73,19 +73,24 @@ export class Page {
     if (options === undefined) {
       return this.originPage.drawText(text);
     }
-    const o = { ... options };
-    (<{a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size', d: number | undefined }[]>[
-      {a: 'x', d: 0 },
-      {a: 'y', d: 0 },
-      {a: 'lineHeight', d: undefined },
-      {a: 'maxWidth', d: undefined },
-      {a: 'size', d: undefined },
+    const o = { ...options };
+    (<
+      {
+        a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size';
+        d: number | undefined;
+      }[]
+    >[
+      { a: 'x', d: 0 },
+      { a: 'y', d: 0 },
+      { a: 'lineHeight', d: undefined },
+      { a: 'maxWidth', d: undefined },
+      { a: 'size', d: undefined },
     ]).forEach((v) => {
-      if (o[v.a] === undefined ) {
+      if (o[v.a] === undefined) {
         o[v.a] = v.d;
         return;
       }
-      o[v.a] = pt(<number | string | Ptuu>o[(v.a)]);
+      o[v.a] = pt(<number | string | Ptuu>o[v.a]);
     });
     if (options.alignment !== undefined) {
       const font: PDFFont = (() => {

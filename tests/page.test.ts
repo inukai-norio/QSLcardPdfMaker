@@ -37,7 +37,7 @@ describe('drawText (setFont)', () => {
     pagePage.setFont(testFont);
     pagePage.setFontSize(12);
   });
-  
+
   it('no options', () => {
     pagePage.drawText('aaa');
     expect(originPageMock.drawText.mock.calls.length).toBe(1);
