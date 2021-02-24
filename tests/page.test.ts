@@ -356,3 +356,38 @@ describe('drawLine (mm size)', () => {
     });
   });
 });
+
+describe('drawText (lineHeight etc)', () => {
+  it('lineHeight', () => {
+    pagePage.drawText('aaa', { x: '24mm', y: '66pt', lineHeight: '66mm' });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      lineHeight: 187.08661417322836,
+    });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 66,
+      lineHeight: 187.08661417322836,
+      text: 'aaa',
+    });
+  });
+  it('maxWidth', () => {
+    pagePage.drawText('aaa', { x: '24mm', y: '66pt', maxWidth: '66mm' });
+    expect(originPageMock.drawText.mock.calls.length).toBe(1);
+    expect(originPageMock.drawText.mock.calls[0][0]).toEqual('aaa');
+    expect(originPageMock.drawText.mock.calls[0][1]).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      maxWidth: 187.08661417322836,
+    });
+    expect(originPageMock.drawText.mock.results[0].value).toEqual({
+      x: 68.03149606299213,
+      y: 187.08661417322836,
+      maxWidth: 187.08661417322836,
+      text: 'aaa',
+    });
+  });
+});
