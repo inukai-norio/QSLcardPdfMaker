@@ -19,6 +19,7 @@ beforeEach(async () => {
     }),
     setFont: jest.fn((font: PDFFont) => font),
     setFontSize: jest.fn((size: number) => size),
+    drawLine: jest.fn((options?: unknown ) => options),
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   originPage = <any>originPageMock;
@@ -288,6 +289,67 @@ describe('drawText (mm size)', () => {
       y: 187.08661417322836,
       size: 25.51181102362205,
       text: 'aaa',
+    });
+  });
+});
+
+describe('drawLine (mm size)', () => {
+  it('string', () => {
+    pagePage.drawLine({ start: { x: '24mm', y: '66mm' }, end: { x: '66mm', y: '24mm' } });
+    expect(originPageMock.drawLine.mock.calls.length).toBe(1);
+    expect(originPageMock.drawLine.mock.calls[0][0]).toEqual({
+      start: {
+        x: 68.03149606299213,
+        y: 187.08661417322836,
+      },
+      end: {
+        x: 187.08661417322836,
+        y: 68.03149606299213,
+      },
+    });
+    expect(originPageMock.drawLine.mock.results[0].value).toEqual({
+      start: {
+        x: 68.03149606299213,
+        y: 187.08661417322836,
+      },
+      end: {
+        x: 187.08661417322836,
+        y: 68.03149606299213,
+      },
+    });
+  });
+  it('ptuu', () => {
+    pagePage.drawLine({
+      start: {
+        x: { num: 24, unit: 'mm' },
+        y: { num: 66, unit: 'mm' },
+      },
+      
+      end: {
+        x: { num: 66, unit: 'mm' },
+        y: { num: 24, unit: 'mm' },
+      },
+    });
+    expect(originPageMock.drawLine.mock.calls.length).toBe(1);
+    expect(originPageMock.drawLine.mock.calls[0][0]).toEqual({
+      start: {
+        x: 68.03149606299213,
+        y: 187.08661417322836,
+      },
+      end: {
+        x: 187.08661417322836,
+        y: 68.03149606299213,
+      },
+    });
+    expect(originPageMock.drawLine.mock.results[0].value).toEqual({
+      start: {
+        x: 68.03149606299213,
+        y: 187.08661417322836,
+      },
+      end: {
+        x: 187.08661417322836,
+        y: 68.03149606299213,
+      },
     });
   });
 });
