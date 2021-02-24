@@ -73,38 +73,20 @@ export class Page {
     if (options === undefined) {
       return this.originPage.drawText(text);
     }
-    const x = (() => {
-      if (options.x !== undefined) {
-        const v = pt(options.x);
-        Object.assign(options, { x: v });
-        return v;
+    const o = { ... options };
+    (<{a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size', d: number | undefined }[]>[
+      {a: 'x', d: 0 },
+      {a: 'y', d: 0 },
+      {a: 'lineHeight', d: undefined },
+      {a: 'maxWidth', d: undefined },
+      {a: 'size', d: undefined },
+    ]).forEach((v) => {
+      if (o[v.a] === undefined ) {
+        o[v.a] = v.d;
+        return;
       }
-      return 0;
-    })();
-    const y = (() => {
-      if (options.y !== undefined) {
-        const v = pt(options.y);
-        Object.assign(options, { y: v });
-        return v;
-      }
-      return 0;
-    })();
-    if (options.lineHeight !== undefined) {
-      const v = options.lineHeight;
-      Object.assign(options, { lineHeight: pt(v) });
-    }
-    if (options.maxWidth !== undefined) {
-      const v = options.maxWidth;
-      Object.assign(options, { maxWidth: pt(v) });
-    }
-    const fontSize: number | undefined = (() => {
-      if (options.size === undefined) {
-        return undefined;
-      }
-      const v = pt(options.size);
-      Object.assign(options, { size: v });
-      return v;
-    })();
+      o[v.a] = pt(<number | string | Ptuu>o[(v.a)]);
+    });
     if (options.alignment !== undefined) {
       const font: PDFFont = (() => {
         if (options.font === undefined) {
@@ -116,28 +98,28 @@ export class Page {
         return options.font;
       })();
       const size: number = (() => {
-        if (fontSize === undefined) {
+        if (o.size === undefined) {
           if (this.fontSize !== undefined) {
             return this.fontSize;
           }
           throw new Error();
         }
-        return fontSize;
+        return <number>o.size;
       })();
       Object.assign(
-        options,
+        o,
         alignmentText({
-          alignment: options.alignment,
+          alignment: o.alignment,
           text,
           font,
           size,
-          x,
-          y,
+          x: <number>o.x,
+          y: <number>o.y,
         })
       );
-      Object.assign(options, { alignment: undefined });
+      Object.assign(o, { alignment: undefined });
     }
-    return this.originPage.drawText(text, <PDFPageDrawTextOptions>options);
+    return this.originPage.drawText(text, <PDFPageDrawTextOptions>o);
   }
 
   drawLine(options: PDFPageDrawLineOptionsFix): void {
