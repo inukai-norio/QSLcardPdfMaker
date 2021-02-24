@@ -24,4 +24,8 @@ describe('mm2pt', () => {
   it('pt to pt', () => {
     expect(pt('12.5pt')).toBe(12.5);
   });
+
+  it('tp or mm to pt 5', () => {
+    expect(() => pt('2nn')).toThrow('undefined unit');
+  });
 });
