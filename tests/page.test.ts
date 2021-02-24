@@ -19,7 +19,7 @@ beforeEach(async () => {
     }),
     setFont: jest.fn((font: PDFFont) => font),
     setFontSize: jest.fn((size: number) => size),
-    drawLine: jest.fn((options?: unknown ) => options),
+    drawLine: jest.fn((options: unknown ) => options),
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   originPage = <any>originPageMock;
