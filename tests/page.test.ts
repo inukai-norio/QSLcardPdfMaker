@@ -9,7 +9,7 @@ import * as page from '../src/lib/pdf/page';
 
 let originPageMock: { [name: string]: jest.Mock };
 let originPage: PDFPage;
-let pagePage: { [name: string]: any };
+let pagePage: page.PDFPageFix;
 let testFont: PDFFont;
 beforeEach(async () => {
   originPageMock = {
