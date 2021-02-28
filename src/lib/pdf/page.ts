@@ -1,10 +1,7 @@
 import {
-  Color,
-  LineCapStyle,
   PDFFont,
-  PDFName,
-  PDFNumber,
   PDFPage,
+  PDFPageDrawLineOptions,
   PDFPageDrawTextOptions,
 } from 'pdf-lib';
 import { Alignment, text as alignmentText } from './alignment';
@@ -24,16 +21,11 @@ type PDFPageDrawTextOptionsFix = Omit<
 > &
   PDFPageDrawTextOptionsFixWeaken;
 
-interface PDFPageDrawLineOptionsFix {
+interface PDFPageDrawLineOptionsFixWeaken {
   start: { x: number | string | Ptuu; y: number | string | Ptuu };
   end: { x: number | string | Ptuu; y: number | string | Ptuu };
-  thickness?: number | PDFNumber;
-  color?: Color;
-  dashArray?: (number | PDFNumber)[];
-  dashPhase?: number | PDFNumber;
-  lineCap?: LineCapStyle;
-  graphicsState?: string | PDFName;
 }
+type PDFPageDrawLineOptionsFix = Omit<PDFPageDrawLineOptions, keyof PDFPageDrawLineOptionsFixWeaken> & PDFPageDrawLineOptionsFixWeaken;
 
 interface PDFPageFixWeaken {
   setFont: (font: PDFFont) => void;
@@ -125,8 +117,7 @@ export const Page = (page: PDFPage): PDFPageFix =>
           const o = { ...options };
           o.start = convertPt(start);
           o.end = convertPt(end);
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          target.drawLine(<any>o);
+          target.drawLine(<PDFPageDrawLineOptions>o);
         };
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
