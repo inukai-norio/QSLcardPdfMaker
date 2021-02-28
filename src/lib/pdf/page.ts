@@ -120,7 +120,6 @@ export const Page = (page: PDFPage): PDFPageFix =>
             }
             return target.drawText(text, <PDFPageDrawTextOptions>o);
           };
-          //        return target[p];
         }
         if (p === 'drawLine') {
           return (options: PDFPageDrawLineOptionsFix): void => {
