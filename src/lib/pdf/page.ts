@@ -40,7 +40,7 @@ interface PDFPageFixWeaken {
 export type PDFPageFix = Omit<PDFPage, keyof PDFPageFixWeaken> &
   PDFPageFixWeaken;
 
-export const Page = (page: PDFPage): PDFPageFix =>
+export default (page: PDFPage): PDFPageFix =>
   new Proxy(page, {
     get: (target, p) => {
       const targetFix: PDFPageFixWeaken = {
