@@ -67,12 +67,12 @@ export const Page = (page: PDFPage): PDFPageFix =>
             return target.drawText(text);
           }
           const o = { ...options };
-          const ptuu2pt = (para: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size', d?: number ): void => {
+          const ptuu2pt = (para: keyof typeof o, d?: number ): void => {
             if (o[para] === undefined) {
-              o[para] = d;
+              Reflect.set(o, para, d);
               return;
             }
-            o[para] = pt(<number | string | Ptuu>o[para]);
+            Reflect.set(o, para, pt(<number | string | Ptuu>o[para]));
           };
           ptuu2pt('x', 0);
           ptuu2pt('y', 0);
