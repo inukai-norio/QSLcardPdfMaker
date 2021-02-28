@@ -118,12 +118,8 @@ export const Page = (page: PDFPage): PDFPageFix =>
           target.drawLine(<PDFPageDrawLineOptions>o);
         },
       };
-      if (p in targetFix) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return (<any>targetFix)[p];
-      }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return (<any>target)[p];
+      return p in targetFix ? (<any>targetFix)[p] : (<any>target)[p];
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any;
