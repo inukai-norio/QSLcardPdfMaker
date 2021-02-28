@@ -10,20 +10,7 @@ import {
 import { Alignment, text as alignmentText } from './alignment';
 import pt, { Ptuu } from './pt';
 
-interface PDFPageDrawTextOptionsFixWeaken extends PDFPageDrawTextOptions {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  size?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  x?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  y?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  lineHeight?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  maxWidth?: any;
-}
-
-interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
+interface PDFPageDrawTextOptionsFixWeaken {
   alignment?: Alignment;
   size?: number | string | Ptuu;
   x?: number | string | Ptuu;
@@ -31,6 +18,7 @@ interface PDFPageDrawTextOptionsFix extends PDFPageDrawTextOptionsFixWeaken {
   lineHeight?: number | string | Ptuu;
   maxWidth?: number | string | Ptuu;
 }
+type PDFPageDrawTextOptionsFix = Omit<PDFPageDrawTextOptions, keyof PDFPageDrawTextOptionsFixWeaken> & PDFPageDrawTextOptionsFixWeaken
 
 interface PDFPageDrawLineOptionsFix {
   start: { x: number | string | Ptuu; y: number | string | Ptuu };
