@@ -44,21 +44,17 @@ export const a = 1;
 export const Page = (page: PDFPage): PDFPageFix =>
   new Proxy(page, {
     get: (target, p) => {
-      if (p === 'setFont') {
-        return (font: PDFFont): void => {
+      const targetFix: PDFPageFixWeaken = {
+        setFont: (font: PDFFont) => {
           Reflect.set(target, 'wFont', font);
           target.setFont(font);
-        };
-      }
-      if (p === 'setFontSize') {
-        return (size: number | string | Ptuu): void => {
+        },
+        setFontSize: (size: number | string | Ptuu): void => {
           const fontSize = pt(size);
           Reflect.set(target, 'wFontSize', fontSize);
           target.setFontSize(fontSize);
-        };
-      }
-      if (p === 'drawText') {
-        return (text: string, options?: PDFPageDrawTextOptionsFix): void => {
+        },
+        drawText: (text: string, options?: PDFPageDrawTextOptionsFix): void => {
           if (options === undefined) {
             return target.drawText(text);
           }
@@ -108,10 +104,8 @@ export const Page = (page: PDFPage): PDFPageFix =>
             Reflect.set(o, 'alignment', undefined);
           }
           return target.drawText(text, <PDFPageDrawTextOptions>o);
-        };
-      }
-      if (p === 'drawLine') {
-        return (options: PDFPageDrawLineOptionsFix): void => {
+        },
+        drawLine: (options: PDFPageDrawLineOptionsFix): void => {
           const { start, end } = options;
           const convertPt = (v: {
             x: number | string | Ptuu;
@@ -122,7 +116,11 @@ export const Page = (page: PDFPage): PDFPageFix =>
           o.start = convertPt(start);
           o.end = convertPt(end);
           target.drawLine(<PDFPageDrawLineOptions>o);
-        };
+        },
+      };
+      if (p in targetFix) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return (<any>targetFix)[p];
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return (<any>target)[p];
