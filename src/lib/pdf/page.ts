@@ -44,100 +44,99 @@ interface PDFPageDrawLineOptionsFix {
 }
 
 export const a = 1;
-export class Page {
-  private originPage;
-
-  private font?: PDFFont;
-
-  private fontSize?: number;
-
-  constructor(originPage: PDFPage) {
-    this.originPage = originPage;
-  }
-
-  get orgin(): PDFPage {
-    return this.originPage;
-  }
-
-  setFont(font: PDFFont): void {
-    this.font = font;
-    this.originPage.setFont(this.font);
-  }
-
-  setFontSize(size: number | string | Ptuu): void {
-    this.fontSize = pt(size);
-    this.originPage.setFontSize(this.fontSize);
-  }
-
-  drawText(text: string, options?: PDFPageDrawTextOptionsFix): void {
-    if (options === undefined) {
-      return this.originPage.drawText(text);
-    }
-    const o = { ...options };
-    (<
-      {
-        a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size';
-        d: number | undefined;
-      }[]
-    >[
-      { a: 'x', d: 0 },
-      { a: 'y', d: 0 },
-      { a: 'lineHeight', d: undefined },
-      { a: 'maxWidth', d: undefined },
-      { a: 'size', d: undefined },
-    ]).forEach((v) => {
-      if (o[v.a] === undefined) {
-        o[v.a] = v.d;
-        return;
+export const Page = (page: PDFPage): any => new Proxy(page, {
+  get: (target, p) => {
+    if (p in target) {
+      if (p === 'setFont') {
+        return (font: PDFFont): void => {
+          Reflect.set(target, 'wFont', font)
+          target.setFont(font);
+        }
       }
-      o[v.a] = pt(<number | string | Ptuu>o[v.a]);
-    });
-    if (options.alignment !== undefined) {
-      const font: PDFFont = (() => {
-        if (options.font === undefined) {
-          if (this.font !== undefined) {
-            return this.font;
-          }
-          throw new Error();
+      if (p === 'setFontSize') {
+        return (size: number | string | Ptuu): void => {
+          const fontSize = pt(size);
+          Reflect.set(target, 'wFontSize', fontSize)
+          target.setFontSize(fontSize);
         }
-        return options.font;
-      })();
-      const size: number = (() => {
-        if (o.size === undefined) {
-          if (this.fontSize !== undefined) {
-            return this.fontSize;
+      }
+      if (p === 'drawText') {
+        return (text: string, options?: PDFPageDrawTextOptionsFix): void =>  {
+          if (options === undefined) {
+            return target.drawText(text);
           }
-          throw new Error();
+          const o = { ...options };
+          (<
+            {
+              a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size';
+              d: number | undefined;
+            }[]
+          >[
+            { a: 'x', d: 0 },
+            { a: 'y', d: 0 },
+            { a: 'lineHeight', d: undefined },
+            { a: 'maxWidth', d: undefined },
+            { a: 'size', d: undefined },
+          ]).forEach((v) => {
+            if (o[v.a] === undefined) {
+              o[v.a] = v.d;
+              return;
+            }
+            o[v.a] = pt(<number | string | Ptuu>o[v.a]);
+          });
+          if (options.alignment !== undefined) {
+            const font: PDFFont = (() => {
+              if (options.font === undefined) {
+                if (Reflect.get(target, 'wFont') !== undefined) {
+                  return Reflect.get(target, 'wFont');
+                }
+                throw new Error();
+              }
+              return options.font;
+            })();
+            const size: number = (() => {
+              if (o.size === undefined) {
+                if (Reflect.get(target, 'wFontSize') !== undefined) {
+                  return Reflect.get(target, 'wFontSize');
+                }
+                throw new Error();
+              }
+              return <number>o.size;
+            })();
+            Object.assign(
+              o,
+              alignmentText({
+                alignment: o.alignment,
+                text,
+                font,
+                size,
+                x: <number>o.x,
+                y: <number>o.y,
+              })
+            );
+            Object.assign(o, { alignment: undefined });
+          }
+          return target.drawText(text, <PDFPageDrawTextOptions>o);
+      }
+//        return target[p];
+      }
+      if (p === 'drawLine') {
+        return (options: PDFPageDrawLineOptionsFix): void => {
+          const { start, end } = options;
+          const convertPt = (v: {
+            x: number | string | Ptuu;
+            y: number | string | Ptuu;
+          }) => ({ x: pt(v.x), y: pt(v.y) });
+      
+          const o = { ...options };
+          o.start = convertPt(start);
+          o.end = convertPt(end);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          target.drawLine(<any>o);
         }
-        return <number>o.size;
-      })();
-      Object.assign(
-        o,
-        alignmentText({
-          alignment: o.alignment,
-          text,
-          font,
-          size,
-          x: <number>o.x,
-          y: <number>o.y,
-        })
-      );
-      Object.assign(o, { alignment: undefined });
+      }
+      return (<any>target)[p];
     }
-    return this.originPage.drawText(text, <PDFPageDrawTextOptions>o);
+    return undefined;
   }
-
-  drawLine(options: PDFPageDrawLineOptionsFix): void {
-    const { start, end } = options;
-    const convertPt = (v: {
-      x: number | string | Ptuu;
-      y: number | string | Ptuu;
-    }) => ({ x: pt(v.x), y: pt(v.y) });
-
-    const o = { ...options };
-    o.start = convertPt(start);
-    o.end = convertPt(end);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.originPage.drawLine(<any>o);
-  }
-}
+});
