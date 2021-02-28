@@ -45,16 +45,16 @@ export const Page = (page: PDFPage): PDFPageFix =>
   new Proxy(page, {
     get: (target, p) => {
       const targetFix: PDFPageFixWeaken = {
-        setFont: (font: PDFFont) => {
+        setFont: (font) => {
           Reflect.set(target, 'wFont', font);
           target.setFont(font);
         },
-        setFontSize: (size: number | string | Ptuu): void => {
+        setFontSize: (size): void => {
           const fontSize = pt(size);
           Reflect.set(target, 'wFontSize', fontSize);
           target.setFontSize(fontSize);
         },
-        drawText: (text: string, options?: PDFPageDrawTextOptionsFix): void => {
+        drawText: (text, options): void => {
           if (options === undefined) {
             return target.drawText(text);
           }
@@ -105,7 +105,7 @@ export const Page = (page: PDFPage): PDFPageFix =>
           }
           return target.drawText(text, <PDFPageDrawTextOptions>o);
         },
-        drawLine: (options: PDFPageDrawLineOptionsFix): void => {
+        drawLine: (options): void => {
           const { start, end } = options;
           const convertPt = (v: {
             x: number | string | Ptuu;
