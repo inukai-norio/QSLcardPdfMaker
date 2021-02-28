@@ -5,11 +5,11 @@ import {
   PDFPageDrawTextOptions,
   StandardFonts,
 } from 'pdf-lib';
-import * as page from '../src/lib/pdf/page';
+import page, {PDFPageFix} from '../src/lib/pdf/page';
 
 let originPageMock: { [name: string]: jest.Mock };
 let originPage: PDFPage;
-let pagePage: page.Page;
+let pagePage: PDFPageFix;
 let testFont: PDFFont;
 beforeEach(async () => {
   originPageMock = {
@@ -23,13 +23,9 @@ beforeEach(async () => {
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   originPage = <any>originPageMock;
-  pagePage = new page.Page(originPage);
+  pagePage = page(originPage);
   const pdfDoc = await PDFDocument.create();
   testFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-});
-
-it('orgin', () => {
-  expect(pagePage.orgin).toEqual(originPage);
 });
 
 describe('drawText (setFont)', () => {
