@@ -67,7 +67,7 @@ export const Page = (page: PDFPage): PDFPageFix =>
             return target.drawText(text);
           }
           const o = { ...options };
-          const ptuu2pt = (para: keyof typeof o, d?: number ): void => {
+          const ptuu2pt = (para: keyof typeof o, d?: number): void => {
             if (o[para] === undefined) {
               Reflect.set(o, para, d);
               return;
@@ -98,18 +98,18 @@ export const Page = (page: PDFPage): PDFPageFix =>
               }
               return <number>o.size;
             })();
-            Object.assign(
-              o,
-              alignmentText({
-                alignment: o.alignment,
-                text,
-                font,
-                size,
-                x: <number>o.x,
-                y: <number>o.y,
-              })
-            );
-            Object.assign(o, { alignment: undefined });
+            const { x, y } = alignmentText({
+              alignment: o.alignment,
+              text,
+              font,
+              size,
+              x: <number>o.x,
+              y: <number>o.y,
+            });
+
+            Reflect.set(o, 'x', x);
+            Reflect.set(o, 'y', y);
+            Reflect.set(o, 'alignment', undefined);
           }
           return target.drawText(text, <PDFPageDrawTextOptions>o);
         };
