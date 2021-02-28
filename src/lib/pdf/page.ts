@@ -67,24 +67,18 @@ export const Page = (page: PDFPage): PDFPageFix =>
             return target.drawText(text);
           }
           const o = { ...options };
-          (<
-            {
-              a: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size';
-              d: number | undefined;
-            }[]
-          >[
-            { a: 'x', d: 0 },
-            { a: 'y', d: 0 },
-            { a: 'lineHeight', d: undefined },
-            { a: 'maxWidth', d: undefined },
-            { a: 'size', d: undefined },
-          ]).forEach((v) => {
-            if (o[v.a] === undefined) {
-              o[v.a] = v.d;
+          const ptuu2pt = (para: 'x' | 'y' | 'lineHeight' | 'maxWidth' | 'size', d?: number ): void => {
+            if (o[para] === undefined) {
+              o[para] = d;
               return;
             }
-            o[v.a] = pt(<number | string | Ptuu>o[v.a]);
-          });
+            o[para] = pt(<number | string | Ptuu>o[para]);
+          };
+          ptuu2pt('x', 0);
+          ptuu2pt('y', 0);
+          ptuu2pt('lineHeight');
+          ptuu2pt('maxWidth');
+          ptuu2pt('size');
           if (options.alignment !== undefined) {
             const font: PDFFont = (() => {
               if (options.font === undefined) {
