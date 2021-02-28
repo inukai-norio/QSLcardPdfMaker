@@ -43,8 +43,16 @@ interface PDFPageDrawLineOptionsFix {
   graphicsState?: string | PDFName;
 }
 
+interface PDFPageFixWeaken {
+  setFont: (font: PDFFont) => void,
+  setFontSize: (size: number | string | Ptuu) => void, 
+  drawText: (text: string, options?: PDFPageDrawTextOptionsFix) => void, 
+  drawLine: (options: PDFPageDrawLineOptionsFix) => void,
+}
+export type PDFPageFix = Omit<PDFPage, keyof PDFPageFixWeaken> & PDFPageFixWeaken
+
 export const a = 1;
-export const Page = (page: PDFPage): any => new Proxy(page, {
+export const Page = (page: PDFPage): PDFPageFix => new Proxy(page, {
   get: (target, p) => {
     if (p in target) {
       if (p === 'setFont') {
@@ -135,8 +143,10 @@ export const Page = (page: PDFPage): any => new Proxy(page, {
           target.drawLine(<any>o);
         }
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return (<any>target)[p];
     }
     return undefined;
   }
-});
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+}) as any;
