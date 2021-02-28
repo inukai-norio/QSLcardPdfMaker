@@ -25,7 +25,11 @@ interface PDFPageDrawLineOptionsFixWeaken {
   start: { x: number | string | Ptuu; y: number | string | Ptuu };
   end: { x: number | string | Ptuu; y: number | string | Ptuu };
 }
-type PDFPageDrawLineOptionsFix = Omit<PDFPageDrawLineOptions, keyof PDFPageDrawLineOptionsFixWeaken> & PDFPageDrawLineOptionsFixWeaken;
+type PDFPageDrawLineOptionsFix = Omit<
+  PDFPageDrawLineOptions,
+  keyof PDFPageDrawLineOptionsFixWeaken
+> &
+  PDFPageDrawLineOptionsFixWeaken;
 
 interface PDFPageFixWeaken {
   setFont: (font: PDFFont) => void;
