@@ -20,8 +20,6 @@ beforeEach(async () => {
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   page = <any>pageMock;
-  const pdfDoc = await PDFDocument.create();
-  testFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 });
 
 describe('drawLine', () => {
@@ -36,11 +34,12 @@ describe('drawLine', () => {
 
 describe('drawText', () => {
   it('drawText', () => {
-    const a = drawText({ "text": "Year", "options": { "font": "testFont", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}, { testFont });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const a = drawText({ "text": "Year", "options": { "font": "testFont", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}, { testFont: <PDFFont><any>'testFontObject' });
     a(page);
     expect(pageMock.drawText.mock.calls.length).toBe(1);
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("Year");
-    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "options": { "font": testFont, "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}});
-    expect(pageMock.drawText.mock.results[0].value).toEqual({ "drawText": { "text": "Year", "options": { "font": testFont, "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}});
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Year", "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
   });
 });
