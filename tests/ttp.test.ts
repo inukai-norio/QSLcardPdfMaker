@@ -2,6 +2,7 @@ import { PDFDocument, PDFFont, StandardFonts } from 'pdf-lib';
 import { PDFPageFix } from '../src/lib/pdf/page';
 import drawLine from '../src/lib/ttp/drawLine';
 import drawText from '../src/lib/ttp/drawText';
+import TTP from '../src/lib/ttp';
 
 
 let pageMock: { [name: string]: jest.Mock };
@@ -41,5 +42,57 @@ describe('drawText', () => {
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("Year");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Year", "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
+  });
+});
+
+
+describe('ttp', () => {
+  let ttp: TTP;
+  beforeEach(()=> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ttp = new TTP({ fm2prjp: <PDFFont><any>'fm2prjpObject' });
+  });
+  it('drawLine', () => {
+    const a = ttp.do({
+      "drawLine": {
+        "start": {
+          "x": "123mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "123mm",
+          "y": "60mm"
+        }
+      }
+    });
+    
+    a(page);
+    expect(pageMock.drawLine.mock.calls.length).toBe(1);
+    expect(pageMock.drawLine.mock.calls[0][0]).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "1237mm",  "y": "60mm"}});
+    expect(pageMock.drawLine.mock.results[0].value).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "1237mm",  "y": "60mm"}});
+  });
+
+  it('drawText', () => {
+    const a = ttp.do(
+      {
+        "drawText": {
+          "text": "Year",
+          "options": {
+            "font": "fm2prjp",
+            "size": 9,
+            "x": "32mm",
+            "y": "71mm",
+            "alignment": {
+              "horizontal": "center"
+            }
+          }
+        }
+      });
+    a(page);
+    expect(pageMock.drawText.mock.calls.length).toBe(1);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual("Year");
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": 'fm2prjpObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Year", "font": 'fm2prjpObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
+  
   });
 });
