@@ -68,8 +68,8 @@ describe('ttp', () => {
     
     a(page);
     expect(pageMock.drawLine.mock.calls.length).toBe(1);
-    expect(pageMock.drawLine.mock.calls[0][0]).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "1237mm",  "y": "60mm"}});
-    expect(pageMock.drawLine.mock.results[0].value).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "1237mm",  "y": "60mm"}});
+    expect(pageMock.drawLine.mock.calls[0][0]).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "123mm",  "y": "60mm"}});
+    expect(pageMock.drawLine.mock.results[0].value).toEqual({ "start": { "x": "123mm", "y": "80mm" },  "end": {"x": "123mm",  "y": "60mm"}});
   });
 
   it('drawText', () => {
