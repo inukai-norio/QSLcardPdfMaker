@@ -1,7 +1,13 @@
 import { PDFFont } from "pdf-lib";
-import { PDFPageFix } from "../pdf/page";
+import { PDFPageDrawLineOptionsFix, PDFPageFix } from "../pdf/page";
 import drawLine from "./drawLine";
-import drawText from "./drawText";
+import drawText, { PDFPageDrawTextOptionsFixWithText } from "./drawText";
+
+type DoOption = {
+  drawLine: PDFPageDrawLineOptionsFix
+} | {
+  drawText: PDFPageDrawTextOptionsFixWithText   
+}
 
 export default class {
   private fonts;
@@ -10,17 +16,17 @@ export default class {
     this.fonts = fonts
   }
 
-  public do(o: Object): (page: PDFPageFix) => void {
+  public do(o: DoOption): (page: PDFPageFix) => void {
     const entries = Object.entries(o);
     if (entries.length !== 1) {
       throw new Error('meny or non parameter');
     }
     const entrie = entries[0];
     if (entrie[0] === 'drawLine') {
-      return drawLine(<any>entrie[1]);
+      return drawLine(<PDFPageDrawLineOptionsFix>entrie[1]);
     }
     if (entrie[0] === 'drawText') {
-      return drawText(<any>entrie[1], this.fonts);
+      return drawText(<PDFPageDrawTextOptionsFixWithText>entrie[1], this.fonts);
     }
     throw new Error('undefined');
   }
