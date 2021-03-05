@@ -25,7 +25,7 @@ interface PDFPageDrawLineOptionsFixWeaken {
   start: { x: number | string | Ptuu; y: number | string | Ptuu };
   end: { x: number | string | Ptuu; y: number | string | Ptuu };
 }
-type PDFPageDrawLineOptionsFix = Omit<
+export type PDFPageDrawLineOptionsFix = Omit<
   PDFPageDrawLineOptions,
   keyof PDFPageDrawLineOptionsFixWeaken
 > &
