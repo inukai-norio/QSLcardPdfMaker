@@ -6,6 +6,7 @@ import drawText from '../src/lib/ttp/drawText';
 
 let pageMock: { [name: string]: jest.Mock };
 let page: PDFPageFix;
+let testFont: PDFFont;
 beforeEach(async () => {
   pageMock = {
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -19,6 +20,8 @@ beforeEach(async () => {
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   page = <any>pageMock;
+  const pdfDoc = await PDFDocument.create();
+  testFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 });
 
 describe('drawLine', () => {
@@ -31,13 +34,13 @@ describe('drawLine', () => {
   });
 });
 
-describe('drawLine', () => {
-  it('drawLine', () => {
-    const a = drawText({ "text": "Year", "options": { "font": "fm2prjp", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}});
+describe('drawText', () => {
+  it('drawText', () => {
+    const a = drawText({ "text": "Year", "options": { "font": "testFont", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}, { testFont });
     a(page);
-    expect(pageMock.drawLine.mock.calls.length).toBe(1);
-    expect(pageMock.drawLine.mock.calls[0][0]).toEqual("Year");
-    expect(pageMock.drawLine.mock.calls[0][1]).toEqual({ "options": { "font": "fm2prjp", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}});
-    expect(pageMock.drawLine.mock.results[0].value).toEqual({ "drawText": { "text": "Year", "options": { "font": "fm2prjp", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}});
+    expect(pageMock.drawText.mock.calls.length).toBe(1);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual("Year");
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "options": { "font": testFont, "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}});
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "drawText": { "text": "Year", "options": { "font": testFont, "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}});
   });
 });
