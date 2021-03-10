@@ -43,7 +43,7 @@ describe('drawText', () => {
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Year", "font": 'testFontObject', "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }});
   });
-  it('', () => {
+  it('drawText var', () => {
     
     const a = drawText({ "drawText": {  "text": {  "type": "recode.date", "date": "MM"}, "options": { "font": "fm1ml", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } } });
     a(page, undefined, { date: new Date(1613433600000), });
