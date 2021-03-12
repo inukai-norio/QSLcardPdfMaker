@@ -1,3 +1,4 @@
+import moment from "moment";
 import { PDFFont } from "pdf-lib";
 import { PDFPageFix, PDFPageDrawTextOptionsFix } from "../pdf/page";
 
@@ -22,8 +23,7 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
     const type = (<any>text).type.split('.');
     if (type[0] === 'recode' ) {
       if (type[1] === 'date') {
-        const m = recode.date.getUTCMonth() + 1;
-        return drawText(m < 10 ? '0' + <string>m : m, options);
+        return drawText(moment.utc(recode.date).format((<any>text).date), options);
       }
     }
   }
