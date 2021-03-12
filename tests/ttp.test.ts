@@ -45,11 +45,11 @@ describe('drawText', () => {
   });
   it('drawText var', () => {
     
-    const a = drawText({ "drawText": {  "text": {  "type": "recode.date", "date": "MM"}, "options": { "font": "fm1ml", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } } });
+    const a = drawText({ "text": {  "type": "recode.date", "date": "MM"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
     a(page, undefined, { date: new Date(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("02");
-    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "fm1ml", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
-    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "02","font": "fm1ml", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "02","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
   })
 });
 
