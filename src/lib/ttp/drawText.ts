@@ -23,7 +23,7 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
     const type = (<any>text).type.split('.');
     if (type[0] === 'recode' ) {
       if (type[1] === 'date') {
-        return drawText(moment.utc(recode.date).format((<any>text).date), options);
+        return drawText(recode.date.format((<any>text).date), options);
       }
     }
   }

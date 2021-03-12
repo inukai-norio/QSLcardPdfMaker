@@ -1,4 +1,5 @@
 import { PDFDocument, PDFFont, StandardFonts } from 'pdf-lib';
+import moment from "moment";
 import { PDFPageFix } from '../src/lib/pdf/page';
 import drawLine from '../src/lib/ttp/drawLine';
 import drawText from '../src/lib/ttp/drawText';
@@ -46,7 +47,7 @@ describe('drawText', () => {
   it('drawText var', () => {
     
     const a = drawText({ "text": {  "type": "recode.date", "date": "MM"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
-    a(page, undefined, { date: new Date(1613433600000), });
+    a(page, undefined, { date: moment.utc(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("02");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "02","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
