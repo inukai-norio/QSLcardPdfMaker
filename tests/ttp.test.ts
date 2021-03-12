@@ -52,6 +52,14 @@ describe('drawText', () => {
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "02","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
   })
+  
+  it('drawText var2', () => {
+    const a = drawText({ "text": {  "type": "recode.date", "date": "HH"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
+    a(page, undefined, { date: moment.utc(1613433600000), });
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual("00");
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "00","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
+  })
 });
 
 
