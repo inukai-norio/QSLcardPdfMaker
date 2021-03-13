@@ -30,6 +30,7 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
       if (text.data === 'date') {
         return drawText(recode.date.format(text.format), options);
       }
+      return drawText(recode[text.data], options);
     }
   }
   return drawText(<string>text, options);
