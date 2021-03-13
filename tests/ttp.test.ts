@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PDFDocument, PDFFont, StandardFonts } from 'pdf-lib';
 import moment from "moment";
 import { PDFPageFix } from '../src/lib/pdf/page';
@@ -20,7 +21,7 @@ beforeEach(async () => {
     setFontSize: jest.fn((size: number) => size),
     drawLine: jest.fn((options: unknown) => options),
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  
   page = <any>pageMock;
 });
 
@@ -36,7 +37,7 @@ describe('drawLine', () => {
 
 describe('drawText', () => {
   it('drawText', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     const a = drawText({ "text": "Year", "options": { "font": "testFont", "size": 9, "x": "32mm", "y": "71mm", "alignment": { "horizontal": "center" }}}, { testFont: <PDFFont><any>'testFontObject' });
     a(page);
     expect(pageMock.drawText.mock.calls.length).toBe(1);
@@ -78,7 +79,7 @@ describe('drawText', () => {
   })
 
   it('drawText throw', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     const a = drawText({ "text": <any>{  "type": "a", "data": "qth"}, }, { testFont: <PDFFont><any>'testFontObject' });
     expect(() => a(page)).toThrow()
   })
@@ -88,7 +89,7 @@ describe('drawText', () => {
 describe('ttp', () => {
   let ttp: TTP;
   beforeEach(()=> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     ttp = new TTP({ fm2prjp: <PDFFont><any>'fm2prjpObject' });
   });
   it('drawLine', () => {
