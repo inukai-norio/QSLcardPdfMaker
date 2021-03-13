@@ -5,7 +5,7 @@ import {
   PDFPageDrawTextOptions,
   StandardFonts,
 } from 'pdf-lib';
-import page, {PDFPageFix} from '../src/lib/pdf/page';
+import page, { PDFPageFix } from '../src/lib/pdf/page';
 
 let originPageMock: { [name: string]: jest.Mock };
 let originPage: PDFPage;

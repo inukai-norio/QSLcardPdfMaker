@@ -1,19 +1,21 @@
-import { PDFFont } from "pdf-lib";
-import { PDFPageDrawLineOptionsFix, PDFPageFix } from "../pdf/page";
-import drawLine from "./drawLine";
-import drawText, { PDFPageDrawTextOptionsFixWithText } from "./drawText";
+import { PDFFont } from 'pdf-lib';
+import { PDFPageDrawLineOptionsFix, PDFPageFix } from '../pdf/page';
+import drawLine from './drawLine';
+import drawText, { PDFPageDrawTextOptionsFixWithText } from './drawText';
 
-type DoOption = {
-  drawLine: PDFPageDrawLineOptionsFix
-} | {
-  drawText: PDFPageDrawTextOptionsFixWithText   
-}
+type DoOption =
+  | {
+      drawLine: PDFPageDrawLineOptionsFix;
+    }
+  | {
+      drawText: PDFPageDrawTextOptionsFixWithText;
+    };
 
 export default class {
   private fonts;
 
   constructor(fonts: { [field: string]: PDFFont }) {
-    this.fonts = fonts
+    this.fonts = fonts;
   }
 
   public do(o: DoOption): (page: PDFPageFix) => void {
@@ -30,5 +32,4 @@ export default class {
     }
     throw new Error('undefined');
   }
-
 }
