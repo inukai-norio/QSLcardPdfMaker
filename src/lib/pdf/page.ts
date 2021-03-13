@@ -15,7 +15,7 @@ interface PDFPageDrawTextOptionsFixWeaken {
   lineHeight?: number | string | Ptuu;
   maxWidth?: number | string | Ptuu;
 }
-type PDFPageDrawTextOptionsFix = Omit<
+export type PDFPageDrawTextOptionsFix = Omit<
   PDFPageDrawTextOptions,
   keyof PDFPageDrawTextOptionsFixWeaken
 > &
@@ -25,7 +25,7 @@ interface PDFPageDrawLineOptionsFixWeaken {
   start: { x: number | string | Ptuu; y: number | string | Ptuu };
   end: { x: number | string | Ptuu; y: number | string | Ptuu };
 }
-type PDFPageDrawLineOptionsFix = Omit<
+export type PDFPageDrawLineOptionsFix = Omit<
   PDFPageDrawLineOptions,
   keyof PDFPageDrawLineOptionsFixWeaken
 > &

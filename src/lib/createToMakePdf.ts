@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { SimpleAdif } from 'adif-parser-ts';
 
 export type MakePdf = {
@@ -5,18 +6,15 @@ export type MakePdf = {
   call: string;
   frequency: string;
   mode: string;
-  date: Date;
+  date: moment.Moment;
   rst_rcvd: string;
   rst_sent: string;
   power?: string;
   gridsquare?: string;
 };
 
-const makeDate = (date: string, time: string): Date => {
-  const d = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6)}`;
-  const t = `${time.slice(0, 2)}:${time.slice(2, 4)}:${time.slice(4)}`;
-  return new Date(Date.parse(`${d}T${t}Z`));
-};
+const makeDate = (date: string, time: string): moment.Moment =>
+  moment.utc(date + time, 'YYYYMMDDHHmmss');
 
 export const createToMakePdf = (data: SimpleAdif): MakePdf[] => {
   if (data.records === undefined) {
