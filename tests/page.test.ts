@@ -20,6 +20,8 @@ beforeEach(async () => {
     setFont: jest.fn((font: PDFFont) => font),
     setFontSize: jest.fn((size: number) => size),
     drawLine: jest.fn((options: unknown) => options),
+    getX: jest.fn(),
+    getY: jest.fn(),
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   originPage = <any>originPageMock;
@@ -395,5 +397,19 @@ describe('drawText (lineHeight etc)', () => {
       maxWidth: 187.08661417322836,
       text: 'aaa',
     });
+  });
+});
+
+describe('page get', () => {
+  it('getX', () => {
+    pagePage.getX();
+    expect(originPageMock.drawText.mock.calls.length).toBe(0);
+    expect(originPageMock.drawText.mock.results).toEqual([]);
+  });
+
+  it('getY', () => {
+    pagePage.getY();
+    expect(originPageMock.drawText.mock.calls.length).toBe(0);
+    expect(originPageMock.drawText.mock.results).toEqual([]);
   });
 });

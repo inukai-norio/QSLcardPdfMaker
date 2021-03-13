@@ -76,6 +76,19 @@ describe('drawText', () => {
       alignment: { horizontal: 'center' },
     });
   });
+
+  it('drawText 2', () => {
+    const a = drawText(
+      { text: 'Year' },
+      { testFont: <PDFFont>(<any>'testFontObject') }
+    );
+    a(page);
+    expect(pageMock.drawText.mock.calls.length).toBe(1);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual('Year');
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual(undefined);
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ text: 'Year' });
+  });
+
   it('drawText var', () => {
     const a = drawText(
       {
