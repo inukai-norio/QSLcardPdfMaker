@@ -90,7 +90,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ date: moment.utc(1613433600000) });
+    a(page, undefined, { date: moment.utc(1613433600000).toISOString() });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('02');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
@@ -123,7 +123,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ date: moment.utc(1613433600000) });
+    a(page, undefined, { date: moment.utc(1613433600000).toISOString() });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('00');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
@@ -156,7 +156,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ rst_sent: '42' });
+    a(page, undefined, { rst_sent: '42' });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('42');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
