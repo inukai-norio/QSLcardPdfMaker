@@ -236,7 +236,7 @@ describe('drawText', () => {
 describe('ttp', () => {
   let ttp: TTP;
   beforeEach(() => {
-    ttp = new TTP({ fm2prjp: <PDFFont>(<any>'fm2prjpObject') });
+    ttp = new TTP({ fm2prjp: <PDFFont>(<any>'fm2prjpObject'), testFont: <PDFFont>(<any>'testFontObject') });
   });
   it('drawLine', () => {
     const a = ttp.do({
