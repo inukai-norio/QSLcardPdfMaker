@@ -9,7 +9,8 @@ type PDFPageDrawTextOptionsFixWithoutObject = Omit<PDFPageDrawTextOptionsFix, ke
 
 type DataNameObject = {
   type: string,
-  date: string,
+  data: string,
+  format?: string,
 };
 
 export type PDFPageDrawTextOptionsFixWithText = { text: string | DataNameObject, options?: PDFPageDrawTextOptionsFixWithoutObject };
@@ -25,10 +26,9 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
   
   const { text, options } = o;
   if (typeof text !== 'string') {
-    const type = text.type.split('.');
-    if (type[0] === 'recode' ) {
-      if (type[1] === 'date') {
-        return drawText(recode.date.format(text.date), options);
+    if (text.type === 'recode' ) {
+      if (text.data === 'date') {
+        return drawText(recode.date.format(text.format), options);
       }
     }
   }
