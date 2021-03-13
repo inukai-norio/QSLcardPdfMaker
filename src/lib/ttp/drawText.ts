@@ -28,11 +28,11 @@ export default (
 ): ((
   page: PDFPageFix,
   userdata?: { [field: string]: string },
-  recode?: { [field: string]: string },
+  recode?: { [field: string]: string }
 ) => void) => (
   page: PDFPageFix,
   userdata?: { [field: string]: string },
-  recode?: { [field: string]: string },
+  recode?: { [field: string]: string }
 ) => {
   const drawText = (
     text: string,
