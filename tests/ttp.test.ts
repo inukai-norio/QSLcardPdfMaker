@@ -76,6 +76,12 @@ describe('drawText', () => {
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Tokyo, osaka","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
   })
+
+  it('drawText throw', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const a = drawText({ "text": <any>{  "type": "a", "data": "qth"}, }, { testFont: <PDFFont><any>'testFontObject' });
+    expect(() => a(page)).toThrow()
+  })
 });
 
 
