@@ -46,7 +46,7 @@ describe('drawText', () => {
   });
   it('drawText var', () => {
     
-    const a = drawText({ "text": {  "type": "recode.date", "date": "MM"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
+    const a = drawText({ "text": {  "type": "recode", "data": "date", "format": "MM"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
     a(page, undefined, { date: moment.utc(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("02");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
@@ -54,7 +54,7 @@ describe('drawText', () => {
   })
   
   it('drawText var2', () => {
-    const a = drawText({ "text": {  "type": "recode.date", "date": "HH"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
+    const a = drawText({ "text": {  "type": "recode", "data": "date", "format": "HH"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
     a(page, undefined, { date: moment.utc(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("00");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
