@@ -8,7 +8,7 @@ type FontString = {
 type PDFPageDrawTextOptionsFixWithoutObject = Omit<PDFPageDrawTextOptionsFix, keyof FontString> & FontString
 
 type DataNameObject = {
-  type: string,
+  type: 'userdata' | 'recode',
   data: string,
   format?: string,
 };
