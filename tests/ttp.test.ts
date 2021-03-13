@@ -298,4 +298,35 @@ describe('ttp', () => {
       alignment: { horizontal: 'center' },
     });
   });
+
+  it('throw 1', () => {
+    expect(() => ttp.do({
+      drawLine: {
+        start: {
+          x: '123mm',
+          y: '80mm',
+        },
+        end: {
+          x: '123mm',
+          y: '60mm',
+        },
+      },
+      drawText: {
+        text: 'Year',
+        options: {
+          font: 'fm2prjp',
+          size: 9,
+          x: '32mm',
+          y: '71mm',
+          alignment: {
+            horizontal: 'center',
+          },
+        },
+      },
+    })).toThrow(/parameter/)
+  });
+
+  it('throw 2', () => {
+    expect(() => ttp.do(<any> { a: { c: 1 } })).toThrow(/undefined/)
+  });
 });
