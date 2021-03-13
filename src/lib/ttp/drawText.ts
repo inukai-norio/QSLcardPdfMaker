@@ -1,5 +1,6 @@
 import moment from "moment";
 import { PDFFont } from "pdf-lib";
+import { MakePdf } from "../createToMakePdf";
 import { PDFPageFix, PDFPageDrawTextOptionsFix } from "../pdf/page";
 
 type FontString = {
@@ -15,7 +16,7 @@ type DataNameObject = {
 
 export type PDFPageDrawTextOptionsFixWithText = { text: string | DataNameObject, options?: PDFPageDrawTextOptionsFixWithoutObject };
 
-export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]: PDFFont }): (page: PDFPageFix, userdata?: { [field: string]: string }, recode?: any) => void => ((page: PDFPageFix, userdata?: any, recode?: any) => {
+export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]: PDFFont }): (page: PDFPageFix, userdata?: { [field: string]: string }, recode?: MakePdf) => void => ((page: PDFPageFix, userdata?: any, recode?: any) => {
   const drawText = (text: string, options?: PDFPageDrawTextOptionsFixWithoutObject) => {
     if (options !== undefined && options.font !== undefined) {
       const font = fonts[options.font];

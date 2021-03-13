@@ -47,7 +47,7 @@ describe('drawText', () => {
   it('drawText var', () => {
     
     const a = drawText({ "text": {  "type": "recode", "data": "date", "format": "MM"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
-    a(page, undefined, { date: moment.utc(1613433600000), });
+    a(page, undefined, <any>{ date: moment.utc(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("02");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "02","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
@@ -55,7 +55,7 @@ describe('drawText', () => {
   
   it('drawText var2', () => {
     const a = drawText({ "text": {  "type": "recode", "data": "date", "format": "HH"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
-    a(page, undefined, { date: moment.utc(1613433600000), });
+    a(page, undefined, <any>{ date: moment.utc(1613433600000), });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("00");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "00","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
@@ -63,7 +63,7 @@ describe('drawText', () => {
   
   it('drawText var3', () => {
     const a = drawText({ "text": {  "type": "recode", "data": "rst_sent"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
-    a(page, undefined, { rst_sent: '42' });
+    a(page, undefined, <any>{ rst_sent: '42' });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual("42");
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "42","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
