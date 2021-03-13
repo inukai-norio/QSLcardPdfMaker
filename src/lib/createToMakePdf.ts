@@ -13,10 +13,10 @@ export type MakePdf = {
   gridsquare?: string;
 };
 
-const makeDate = (date: string, time: string): moment.Moment =>
-  moment.utc(date + time, 'YYYYMMDDHHmmss');
+const makeDate = (date: string, time: string): string =>
+  moment.utc(date + time, 'YYYYMMDDHHmmss').toISOString();
 
-export const createToMakePdf = (data: SimpleAdif): {[field: string]: string | moment.Moment}[] => {
+export const createToMakePdf = (data: SimpleAdif): {[field: string]: string}[] => {
   
   if (data.records === undefined) {
     throw new Error('data is undifined');
