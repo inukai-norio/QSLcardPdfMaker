@@ -43,7 +43,7 @@ export default [
     rst_rcvd: '-13',
     rst_sent: '-14',
     power: '10.0',
-    gridsquare: 'PM95',
+    gridsquare: 'PM95wr',
   },
   {
     band: '40M',
