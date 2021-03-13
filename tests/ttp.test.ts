@@ -215,6 +215,22 @@ describe('drawText', () => {
     );
     expect(() => a(page)).toThrow();
   });
+
+  it('drawText throw2', () => {
+    const a = drawText(
+      { text: { type: 'recode', data: 'rst_sent' } },
+      { testFont: <PDFFont>(<any>'testFontObject') }
+    );
+    expect(() => a(page)).toThrow();
+  });
+
+  it('drawText throw3', () => {
+    const a = drawText(
+      { text: { type: 'userdata', data: 'qth' } },
+      { testFont: <PDFFont>(<any>'testFontObject') }
+    );
+    expect(() => a(page)).toThrow();
+  });
 });
 
 describe('ttp', () => {
