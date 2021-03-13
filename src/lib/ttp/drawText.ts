@@ -1,5 +1,5 @@
+import moment from 'moment';
 import { PDFFont } from 'pdf-lib';
-import { MakePdf } from '../createToMakePdf';
 import { PDFPageFix, PDFPageDrawTextOptionsFix } from '../pdf/page';
 
 type FontString = {
@@ -28,11 +28,11 @@ export default (
 ): ((
   page: PDFPageFix,
   userdata?: { [field: string]: string },
-  recode?: MakePdf
+  recode?: { [field: string]: string }
 ) => void) => (
   page: PDFPageFix,
   userdata?: { [field: string]: string },
-  recode?: MakePdf
+  recode?: { [field: string]: string }
 ) => {
   const drawText = (
     text: string,
@@ -52,10 +52,9 @@ export default (
         throw new Error();
       }
       if (text.data === 'date') {
-        return drawText(recode.date.format(text.format), options);
+        return drawText(moment.utc(recode.date).format(text.format), options);
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return drawText((<any>recode)[text.data], options);
+      return drawText(recode[text.data], options);
     }
     if (text.type === 'userdata') {
       if (userdata === undefined) {

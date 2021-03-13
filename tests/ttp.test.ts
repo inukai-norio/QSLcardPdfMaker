@@ -90,7 +90,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ date: moment.utc(1613433600000) });
+    a(page, undefined, { date: moment.utc(1613433600000).toISOString() });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('02');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
@@ -123,7 +123,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ date: moment.utc(1613433600000) });
+    a(page, undefined, { date: moment.utc(1613433600000).toISOString() });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('00');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
@@ -156,7 +156,7 @@ describe('drawText', () => {
       },
       { testFont: <PDFFont>(<any>'testFontObject') }
     );
-    a(page, undefined, <any>{ rst_sent: '42' });
+    a(page, undefined, { rst_sent: '42' });
     expect(pageMock.drawText.mock.calls[0][0]).toEqual('42');
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({
       font: 'testFontObject',
@@ -236,7 +236,10 @@ describe('drawText', () => {
 describe('ttp', () => {
   let ttp: TTP;
   beforeEach(() => {
-    ttp = new TTP({ fm2prjp: <PDFFont>(<any>'fm2prjpObject') });
+    ttp = new TTP({
+      fm2prjp: <PDFFont>(<any>'fm2prjpObject'),
+      testFont: <PDFFont>(<any>'testFontObject'),
+    });
   });
   it('drawLine', () => {
     const a = ttp.do({
@@ -295,6 +298,39 @@ describe('ttp', () => {
       size: 9,
       x: '32mm',
       y: '71mm',
+      alignment: { horizontal: 'center' },
+    });
+  });
+
+  it('drawText 2', () => {
+    const a = ttp.do({
+      drawText: {
+        text: { type: 'recode', data: 'rst_sent' },
+        options: {
+          font: 'testFont',
+          size: 12,
+          x: '46mm',
+          y: '63mm',
+          alignment: { horizontal: 'center' },
+        },
+      },
+    });
+    a(page, undefined, { rst_sent: '42' });
+    expect(pageMock.drawText.mock.calls.length).toBe(1);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual('42');
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({
+      font: 'testFontObject',
+      size: 12,
+      x: '46mm',
+      y: '63mm',
+      alignment: { horizontal: 'center' },
+    });
+    expect(pageMock.drawText.mock.results[0].value).toEqual({
+      text: '42',
+      font: 'testFontObject',
+      size: 12,
+      x: '46mm',
+      y: '63mm',
       alignment: { horizontal: 'center' },
     });
   });
