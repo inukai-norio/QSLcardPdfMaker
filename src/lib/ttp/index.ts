@@ -18,7 +18,13 @@ export default class {
     this.fonts = fonts;
   }
 
-  public do(o: DoOption): (page: PDFPageFix, userdata?: { [field: string]: string }, recode?: { [field: string]: string }) => void {
+  public do(
+    o: DoOption
+  ): (
+    page: PDFPageFix,
+    userdata?: { [field: string]: string },
+    recode?: { [field: string]: string }
+  ) => void {
     const entries = Object.entries(o);
     if (entries.length !== 1) {
       throw new Error('meny or non parameter');
