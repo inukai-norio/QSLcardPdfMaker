@@ -299,6 +299,39 @@ describe('ttp', () => {
     });
   });
 
+  it('drawText 2', () => {
+    const a = ttp.do({
+      drawText: {
+        text: { type: 'recode', data: 'rst_sent' },
+        options: {
+          font: 'testFont',
+          size: 12,
+          x: '46mm',
+          y: '63mm',
+          alignment: { horizontal: 'center' },
+        },
+      },
+    });
+    a(page, undefined, { rst_sent: '42' });
+    expect(pageMock.drawText.mock.calls.length).toBe(1);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual('42');
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({
+      font: 'testFontObject',
+      size: 12,
+      x: '46mm',
+      y: '63mm',
+      alignment: { horizontal: 'center' },
+    });
+    expect(pageMock.drawText.mock.results[0].value).toEqual({
+      text: '42',
+      font: 'testFontObject',
+      size: 12,
+      x: '46mm',
+      y: '63mm',
+      alignment: { horizontal: 'center' },
+    });
+  });
+
   it('throw 1', () => {
     expect(() =>
       ttp.do({
