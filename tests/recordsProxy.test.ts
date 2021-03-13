@@ -1,11 +1,11 @@
 import readDdifAndParse from '../src/lib/adif';
-import createToMakePdf from '../src/lib/createToMakePdf';
-import expected from './data/createToMakePdf/expected';
+import recordsProxy from '../src/lib/recordsProxy';
+import expected from './data/recordsProxy/expected';
 
-describe('createToMakePdf', () => {
-  it('createToMakePdf', () => {
-    const adi = readDdifAndParse('./tests/data/createToMakePdf/test.adi');
-    const ret = createToMakePdf(adi);
+describe('recordsProxy', () => {
+  it('recordsProxy', () => {
+    const adi = readDdifAndParse('./tests/data/recordsProxy/test.adi');
+    const ret = recordsProxy(adi);
     expect(ret.map((v) => v.date)).toEqual(expected.map((v) => v.date));
     expect(ret.map((v) => v.band)).toEqual(expected.map((v) => v.band));
     expect(ret.map((v) => v.call)).toEqual(expected.map((v) => v.call));
@@ -24,6 +24,6 @@ describe('createToMakePdf', () => {
     const adi = {
       records: undefined,
     };
-    expect(() => createToMakePdf(adi)).toThrow(/undifined/);
+    expect(() => recordsProxy(adi)).toThrow(/undifined/);
   });
 });
