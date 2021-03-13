@@ -241,7 +241,7 @@ describe('text', () => {
     expect(() =>
       alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alignment: <any>{ vertical: 'hoge' , horizontal: 'center'},
+        alignment: <any>{ vertical: 'hoge', horizontal: 'center' },
         text: 'aaa',
         font: testFont,
         size: 12,
@@ -255,7 +255,7 @@ describe('text', () => {
     expect(() =>
       alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alignment: <any>{ vertical: 'hoge' , horizontal: 'right'},
+        alignment: <any>{ vertical: 'hoge', horizontal: 'right' },
         text: 'aaa',
         font: testFont,
         size: 12,
@@ -269,7 +269,7 @@ describe('text', () => {
     expect(() =>
       alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alignment: <any>{ vertical: 'top' , horizontal: 'hoge' },
+        alignment: <any>{ vertical: 'top', horizontal: 'hoge' },
         text: 'aaa',
         font: testFont,
         size: 12,
@@ -278,12 +278,12 @@ describe('text', () => {
       })
     ).toThrow();
   });
-  
+
   it('middle hoge', () => {
     expect(() =>
       alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alignment: <any>{ vertical: 'middle' , horizontal: 'hoge' },
+        alignment: <any>{ vertical: 'middle', horizontal: 'hoge' },
         text: 'aaa',
         font: testFont,
         size: 12,
@@ -297,7 +297,7 @@ describe('text', () => {
     expect(() =>
       alignment.text({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        alignment: <any>{ vertical: 'bottom' , horizontal: 'hoge' },
+        alignment: <any>{ vertical: 'bottom', horizontal: 'hoge' },
         text: 'aaa',
         font: testFont,
         size: 12,
