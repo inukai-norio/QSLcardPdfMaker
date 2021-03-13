@@ -6,7 +6,10 @@ describe('createToMakePdf', () => {
   it('createToMakePdf', () => {
     const adi = readDdifAndParse('./tests/data/createToMakePdf/test.adi');
     const ret = createToMakePdf(adi);
-    expect(ret).toEqual(expected);
+    expect(ret.map((v) => {
+      Reflect.set(v, 'date', v.date.toISOString());
+      return v;
+    })).toEqual(expected);
   });
   it('throw1', () => {
     const adi = {
