@@ -16,37 +16,27 @@ export type MakePdf = {
 const makeDate = (date: string, time: string): moment.Moment =>
   moment.utc(date + time, 'YYYYMMDDHHmmss');
 
-export const createToMakePdf = (data: SimpleAdif): MakePdf[] => {
+export const createToMakePdf = (data: SimpleAdif): {[field: string]: string | moment.Moment}[] => {
+  
   if (data.records === undefined) {
     throw new Error('data is undifined');
   }
-
-  return data.records.map((v) => {
-    [
-      'band',
-      'call',
-      'freq',
-      'mode',
-      'qso_date',
-      'time_on',
-      'rst_rcvd',
-      'rst_sent',
-    ].forEach((i) => {
-      if (v[i] === undefined) {
-        throw new Error(`${i} is undifined`);
+return data.records.map((v) => 
+  new Proxy(v, {
+    get: (target, p) => {
+      if (p === 'mode') {
+        return target.mode === 'MFSK' ? target.submode : target.mode;
       }
-    });
-    return {
-      band: v.band,
-      call: v.call,
-      frequency: v.freq,
-      mode: v.mode === 'MFSK' ? v.submode : v.mode,
-      date: makeDate(v.qso_date, v.time_on),
-      rst_rcvd: v.rst_rcvd,
-      rst_sent: v.rst_sent,
-      power: v.tx_pwr,
-      gridsquare:
-        v.gridsquare === undefined ? undefined : v.gridsquare.slice(0, 4),
-    };
-  });
-};
+      if (p === 'date') {
+        return makeDate(target.qso_date, target.time_on);
+      }
+      if (p === 'power') {
+        return target.tx_pwr;
+      }
+      if (p === 'frequency') {
+        return target.freq;
+      }
+      return target[<string>p];
+    }
+  }));
+}
