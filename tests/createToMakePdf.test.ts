@@ -1,5 +1,5 @@
 import readDdifAndParse from '../src/lib/adif';
-import { createToMakePdf } from '../src/lib/createToMakePdf';
+import createToMakePdf from '../src/lib/createToMakePdf';
 import expected from './data/createToMakePdf/expected';
 
 describe('createToMakePdf', () => {

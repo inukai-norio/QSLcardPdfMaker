@@ -1,22 +1,10 @@
 import moment from 'moment';
 import { SimpleAdif } from 'adif-parser-ts';
 
-export type MakePdf = {
-  band: string;
-  call: string;
-  frequency: string;
-  mode: string;
-  date: moment.Moment;
-  rst_rcvd: string;
-  rst_sent: string;
-  power?: string;
-  gridsquare?: string;
-};
-
 const makeDate = (date: string, time: string): string =>
   moment.utc(date + time, 'YYYYMMDDHHmmss').toISOString();
 
-export const createToMakePdf = (data: SimpleAdif): {[field: string]: string}[] => {
+export default (data: SimpleAdif): {[field: string]: string}[] => {
   
   if (data.records === undefined) {
     throw new Error('data is undifined');
