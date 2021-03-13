@@ -35,6 +35,7 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
     if (text.type === 'userdata') {
       return drawText(userdata[text.data], options);
     }
+    throw new Error();
   }
   return drawText(<string>text, options);
 });
