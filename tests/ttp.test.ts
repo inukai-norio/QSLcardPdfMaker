@@ -68,6 +68,14 @@ describe('drawText', () => {
     expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
     expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "42","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
   })
+
+  it('drawText var4', () => {
+    const a = drawText({ "text": {  "type": "userdata", "data": "qth"}, "options": { "font": "testFont", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } }, { testFont: <PDFFont><any>'testFontObject' });
+    a(page, { qth: 'Tokyo, osaka' }, undefined);
+    expect(pageMock.drawText.mock.calls[0][0]).toEqual("Tokyo, osaka");
+    expect(pageMock.drawText.mock.calls[0][1]).toEqual({ "font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } } );
+    expect(pageMock.drawText.mock.results[0].value).toEqual({ "text": "Tokyo, osaka","font": "testFontObject", "size": 12, "x": "46mm", "y": "63mm", "alignment": { "horizontal": "center" } });
+  })
 });
 
 
