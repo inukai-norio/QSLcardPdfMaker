@@ -7,7 +7,12 @@ type FontString = {
 }
 type PDFPageDrawTextOptionsFixWithoutObject = Omit<PDFPageDrawTextOptionsFix, keyof FontString> & FontString
 
-export type PDFPageDrawTextOptionsFixWithText = { text: string | Object, options?: PDFPageDrawTextOptionsFixWithoutObject };
+type DataNameObject = {
+  type: string,
+  date: string,
+};
+
+export type PDFPageDrawTextOptionsFixWithText = { text: string | DataNameObject, options?: PDFPageDrawTextOptionsFixWithoutObject };
 
 export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]: PDFFont }): (page: PDFPageFix, userdata?: any, recode?: any) => void => ((page: PDFPageFix, userdata?: any, recode?: any) => {
   const drawText = (text: string, options?: PDFPageDrawTextOptionsFixWithoutObject) => {
@@ -20,10 +25,10 @@ export default (o: PDFPageDrawTextOptionsFixWithText, fonts : { [field: string]:
   
   const { text, options } = o;
   if (typeof text !== 'string') {
-    const type = (<any>text).type.split('.');
+    const type = text.type.split('.');
     if (type[0] === 'recode' ) {
       if (type[1] === 'date') {
-        return drawText(recode.date.format((<any>text).date), options);
+        return drawText(recode.date.format(text.date), options);
       }
     }
   }
