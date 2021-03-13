@@ -6,7 +6,7 @@ describe('createToMakePdf', () => {
   it('createToMakePdf', () => {
     const adi = readDdifAndParse('./tests/data/createToMakePdf/test.adi');
     const ret = createToMakePdf(adi);
-    expect(ret.map((v) => (<moment.Moment>v.date).toISOString())).toEqual(expected.map((v) => v.date));
+    expect(ret.map((v) => v.date)).toEqual(expected.map((v) => v.date));
     expect(ret.map((v) => v.band)).toEqual(expected.map((v) => v.band));
     expect(ret.map((v) => v.call)).toEqual(expected.map((v) => v.call));
     expect(ret.map((v) => v.frequency)).toEqual(expected.map((v) => v.frequency));
