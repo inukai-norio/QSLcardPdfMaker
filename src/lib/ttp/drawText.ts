@@ -54,8 +54,7 @@ export default (
       if (text.data === 'date') {
         return drawText(moment.utc(recode.date).format(text.format), options);
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return drawText((<any>recode)[text.data], options);
+      return drawText(recode[text.data], options);
     }
     if (text.type === 'userdata') {
       if (userdata === undefined) {
