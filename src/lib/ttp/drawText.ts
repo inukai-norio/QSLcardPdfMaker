@@ -48,12 +48,19 @@ export default (
   const { text, options } = o;
   if (typeof text !== 'string') {
     if (text.type === 'recode') {
+      if (recode === undefined) {
+        throw new Error();
+      }
       if (text.data === 'date') {
         return drawText(recode.date.format(text.format), options);
       }
-      return drawText(recode[text.data], options);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return drawText((<any>recode)[text.data], options);
     }
     if (text.type === 'userdata') {
+      if (userdata === undefined) {
+        throw new Error();
+      }
       return drawText(userdata[text.data], options);
     }
     throw new Error();
