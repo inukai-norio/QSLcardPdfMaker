@@ -1,0 +1,545 @@
+{
+  "template": [
+    {
+      "drawLine": {
+        "start": {
+          "x": "25mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "137mm",
+          "y": "80mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "25mm",
+          "y": "70mm"
+        },
+        "end": {
+          "x": "137mm",
+          "y": "70mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "25mm",
+          "y": "60mm"
+        },
+        "end": {
+          "x": "137mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "25mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "25mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "67mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "67mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "81mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "81mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "109mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "109mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "123mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "123mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawLine": {
+        "start": {
+          "x": "137mm",
+          "y": "80mm"
+        },
+        "end": {
+          "x": "137mm",
+          "y": "60mm"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "Confrming Our QSO",
+        "options": {
+          "x": "136mm",
+          "y": "85mm",
+          "alignment": {
+            "horizontal": "right"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "To Radio",
+        "options": {
+          "x": "25mm",
+          "y": "85mm"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "DATE",
+        "options": {
+          "font": "m2prjp",
+          "size": 12,
+          "x": "46mm",
+          "y": "75mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "TIME",
+        "options": {
+          "font": "m2prjp",
+          "size": 12,
+          "x": "74mm",
+          "y": "75mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "RST",
+        "options": {
+          "font": "m2prjp",
+          "size": 12,
+          "x": "95mm",
+          "y": "75mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "BAND",
+        "options": {
+          "font": "m2prjp",
+          "size": 12,
+          "x": "116mm",
+          "y": "75mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "MODE",
+        "options": {
+          "font": "m2prjp",
+          "size": 12,
+          "x": "130mm",
+          "y": "75mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "Year",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "32mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "Month",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "46mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "Day",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "60mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "UTC",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "74mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "RCVD",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "88mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "SENT",
+        "options": {
+          "font": "m2prjp",
+          "size": 9,
+          "x": "102mm",
+          "y": "71mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "RIG",
+        "options": {
+          "x": "25mm",
+          "y": "50mm",
+          "font": "m2prjp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "POWER",
+        "options": {
+          "x": "100mm",
+          "y": "50mm",
+          "font": "m2prjp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "QTH",
+        "options": {
+          "x": "25mm",
+          "y": "45mm",
+          "font": "m2prjp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": "住所",
+        "options": {
+          "x": "25mm",
+          "y": "30mm",
+          "font": "m2prjp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "date",
+          "format": "yyyy"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "32mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "date",
+          "format": "MM"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "46mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "date",
+          "format": "DD"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "60mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "date",
+          "format": "HH:mm"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "74mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "rst_rcvd"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "88mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "rst_sent"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "102mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "band"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "116mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "mode"
+        },
+        "options": {
+          "font": "m1ml",
+          "size": 12,
+          "x": "130mm",
+          "y": "63mm",
+          "alignment": {
+            "horizontal": "center"
+          }
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "rig"
+        },
+        "options": {
+          "x": "40mm",
+          "y": "50mm",
+          "font": "m2pljp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "power"
+        },
+        "options": {
+          "x": "125mm",
+          "y": "50mm",
+          "font": "m2pljp"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "recode",
+          "data": "call"
+        },
+        "options": {
+          "x": "45mm",
+          "y": "85mm",
+          "size": 15,
+          "font": "m1ml"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "userdata",
+          "data": "qth"
+        },
+        "options": {
+          "x": "40mm",
+          "y": "45mm",
+          "font": "m2pljp",
+          "lineHeight": "5mm"
+        }
+      }
+    },
+    {
+      "drawText": {
+        "text": {
+          "type": "userdata",
+          "data": "qth_local"
+        },
+        "options": {
+          "x": "40mm",
+          "y": "30mm",
+          "font": "m2pljp",
+          "lineHeight": "5mm"
+        }
+      }
+    }
+  ],
+  "height": "148mm",
+  "width": "100mm",
+  "font": {
+    "m1ml": "./fonts/mplus-en/mplus-1m-light.ttf",
+    "m1mr": "./fonts/mplus-en/mplus-1m-regular.ttf",
+    "m2pljp": "./fonts/mplus-jp/mplus-2p-light.otf",
+    "m2prjp": "./fonts/mplus-jp/mplus-2p-regular.otf"
+  },
+  "defaultFont": "m2pljp",
+  "defaultSize": 12
+}
