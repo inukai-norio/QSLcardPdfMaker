@@ -16,7 +16,7 @@ type Template = {
   defaultSize: string | number | Ptuu,
 }
 
-const main = async () => {
+const main = async (templateFile: string, outFile: string) => {
   const userdata = {
     qth: [
       '43-1, Minamiotsuka 3-chome,',
@@ -53,7 +53,7 @@ const main = async () => {
     },
   ];
   
-  const templateJSON = await fs.readFile('./template/standard.json', {encoding: 'utf8'});
+  const templateJSON = await fs.readFile(templateFile, {encoding: 'utf8'});
   const template = <Template>JSON.parse(templateJSON);
 
   // PDF Creation
@@ -77,7 +77,7 @@ const main = async () => {
   });
 
   const pdfBytes = await pdfDoc.save();
-  await fs.writeFile('aaa.pdf', pdfBytes);
+  await fs.writeFile(outFile, pdfBytes);
 };
 
-main();
+main('./template/standard.json', 'aaa.pdf');
