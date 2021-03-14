@@ -16,7 +16,7 @@ type Template = {
   defaultSize: string | number | Ptuu,
 }
 
-(async () => {
+const main = async () => {
   const userdata = {
     qth: [
       '43-1, Minamiotsuka 3-chome,',
@@ -78,4 +78,6 @@ type Template = {
 
   const pdfBytes = await pdfDoc.save();
   await fs.writeFile('aaa.pdf', pdfBytes);
-})();
+};
+
+main();
