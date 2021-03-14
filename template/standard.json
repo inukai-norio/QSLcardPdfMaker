@@ -334,9 +334,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "32mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -352,9 +353,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "46mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -370,9 +372,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "60mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -388,9 +391,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "74mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -405,9 +409,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "88mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -422,9 +427,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "102mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -439,9 +445,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "116mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
@@ -456,9 +463,10 @@
           "font": "m1ml",
           "size": 12,
           "x": "130mm",
-          "y": "63mm",
+          "y": "66mm",
           "alignment": {
-            "horizontal": "center"
+            "horizontal": "center",
+            "vertical": "middle"
           }
         }
       }
