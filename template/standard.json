@@ -206,7 +206,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "32mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -220,7 +220,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "46mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -234,7 +234,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "60mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -248,7 +248,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "74mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -262,7 +262,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "88mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -276,7 +276,7 @@
           "font": "m2prjp",
           "size": 9,
           "x": "102mm",
-          "y": "71mm",
+          "y": "71.5mm",
           "alignment": {
             "horizontal": "center"
           }
@@ -466,7 +466,7 @@
     {
       "drawText": {
         "text": {
-          "type": "recode",
+          "type": "userdata",
           "data": "rig"
         },
         "options": {

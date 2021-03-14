@@ -4,6 +4,9 @@ import fs from 'fs/promises';
 import page from '../lib/pdf/page';
 import pt, { Ptuu } from '../lib/pdf/pt';
 import TTP, { DoOption } from '../lib/ttp';
+import adif from '../lib/adif';
+import jarlsort from '../lib/jarlsort';
+import recordsProxy from '../lib/recordsProxy';
 
 type Template = {
   template: DoOption[],
@@ -16,43 +19,12 @@ type Template = {
   defaultSize: string | number | Ptuu,
 }
 
-const main = async (templateFile: string, outFile: string) => {
-  const userdata = {
-    qth: [
-      '43-1, Minamiotsuka 3-chome,',
-      'Toshima-ku, TOKYO',
-      '170-8073, JAPAN',
-    ].join('\n'),
-    qth_local: [
-      '170-8073 東京都豊島区南大塚 3-43-1',
-      '大塚HTビル6階',
-    ].join('\n'),
-  };
-  const recs = [
-    {
-      band: '40M',
-      call: 'AB1CDE',
-      frequency: '7.042900',
-      mode: 'FT8',
-      date: (new Date(1613433600000)).toISOString(),
-      rst_rcvd: '-1',
-      rst_sent: '-2',
-      rig: 'FT-450DM',
-      power: '50W',
-    },
-    {
-      band: '40M',
-      call: 'AB0CDE',
-      frequency: '7.042900',
-      mode: 'FT4',
-      date: (new Date(1613433600000)).toISOString(),
-      rst_rcvd: '-1',
-      rst_sent: '-2',
-      rig: 'IC-7300M',
-      power: '50W',
-    },
-  ];
-  
+const main = async (adifFile: string, userdataFile: string, templateFile: string, outFile: string) => {    
+  const recs = recordsProxy(jarlsort(adif(adifFile)));
+
+  const userdataJSON = await fs.readFile(userdataFile, {encoding: 'utf8'});
+  const userdata = <{[field: string]: string}>JSON.parse(userdataJSON);
+
   const templateJSON = await fs.readFile(templateFile, {encoding: 'utf8'});
   const template = <Template>JSON.parse(templateJSON);
 
@@ -80,4 +52,4 @@ const main = async (templateFile: string, outFile: string) => {
   await fs.writeFile(outFile, pdfBytes);
 };
 
-main('./template/standard.json', 'aaa.pdf');
+main('./tests/data/jarlsort/test.adi', 'userdata.json', './template/standard.json', 'aaa.pdf');
