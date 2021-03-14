@@ -1,7 +1,7 @@
-import { PDFDocument, PDFFont } from 'pdf-lib';
+import { degrees, PDFDocument, PDFFont } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import fs from 'fs/promises';
-import page from '../lib/pdf/page';
+import page, { PDFPageFix } from '../lib/pdf/page';
 import pt, { Ptuu } from '../lib/pdf/pt';
 import TTP, { DoOption } from '../lib/ttp';
 import adif from '../lib/adif';
@@ -17,6 +17,20 @@ type Template = {
   width: string | number | Ptuu,
   defaultFont: string,
   defaultSize: string | number | Ptuu,
+}
+
+const callText = (pagea: PDFPageFix, call: string, font: PDFFont) => {
+  
+  call.split('').forEach((v, i) => {
+    const l = call.length;
+    pagea.drawText(v, {
+      rotate: degrees(90),
+      x: { num: 19, unit: 'mm' },
+      y: { num: 100 - (l + 1) * 9 + 9 * i, unit: 'mm' },
+      size: { num: 9, unit: 'mm' },
+      font,
+    });
+  });
 }
 
 const main = async (adifFile: string, userdataFile: string, templateFile: string, outFile: string) => {    
@@ -45,6 +59,8 @@ const main = async (adifFile: string, userdataFile: string, templateFile: string
     
     pagea.setFont(font[template.defaultFont]);
     pagea.setFontSize(template.defaultSize);
+
+    callText(pagea, rec.call, font.m1mr);
     (<DoOption[]>JSON.parse(DoOptionJSON)).forEach((o) => ttp.do(o)(pagea, userdata, rec));
   });
 
