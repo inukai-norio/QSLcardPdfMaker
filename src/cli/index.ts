@@ -17,6 +17,8 @@ type Template = {
   width: string | number | Ptuu,
   defaultFont: string,
   defaultSize: string | number | Ptuu,
+  callBox: boolean,
+  callText: boolean,
 }
 
 const callText = (pagea: PDFPageFix, call: string, font: PDFFont) => {
@@ -111,9 +113,13 @@ const main = async (adifFile: string, userdataFile: string, templateFile: string
     
     pagea.setFont(font[template.defaultFont]);
     pagea.setFontSize(template.defaultSize);
-
-    callText(pagea, rec.call, font.m1mr);
-    callBox(pagea, rec.call);
+    
+    if (template.callText) {
+      callText(pagea, rec.call, font.m1mr);
+    }
+    if (template.callBox) {
+      callBox(pagea, rec.call);
+    }
     (<DoOption[]>JSON.parse(DoOptionJSON)).forEach((o) => ttp.do(o)(pagea, userdata, rec));
   });
 

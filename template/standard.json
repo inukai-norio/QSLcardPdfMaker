@@ -549,5 +549,7 @@
     "m2prjp": "./fonts/mplus-jp/mplus-2p-regular.otf"
   },
   "defaultFont": "m2pljp",
-  "defaultSize": 12
+  "defaultSize": 12,
+  "callBox": false,
+  "callText": true
 }
