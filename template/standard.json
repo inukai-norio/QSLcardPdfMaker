@@ -551,5 +551,6 @@
   "defaultFont": "m2pljp",
   "defaultSize": 12,
   "callBox": false,
-  "callText": true
+  "callText": true,
+  "jarlsort": true
 }

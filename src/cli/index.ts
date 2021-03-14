@@ -19,6 +19,7 @@ type Template = {
   defaultSize: string | number | Ptuu,
   callBox: boolean,
   callText: boolean,
+  jarlsort: boolean,
 }
 
 const callText = (pagea: PDFPageFix, call: string, font: PDFFont) => {
@@ -88,13 +89,13 @@ const callBox = (pagea: PDFPageFix, call: string) => {
 
 
 const main = async (adifFile: string, userdataFile: string, templateFile: string, outFile: string) => {    
-  const recs = recordsProxy(jarlsort(adif(adifFile)));
-
   const userdataJSON = await fs.readFile(userdataFile, {encoding: 'utf8'});
   const userdata = <{[field: string]: string}>JSON.parse(userdataJSON);
-
+  
   const templateJSON = await fs.readFile(templateFile, {encoding: 'utf8'});
   const template = <Template>JSON.parse(templateJSON);
+  
+  const recs = (() => template.jarlsort ? recordsProxy(jarlsort(adif(adifFile))) : recordsProxy(adif(adifFile)))();
 
   // PDF Creation
   const pdfDoc = await PDFDocument.create();
