@@ -1,4 +1,4 @@
-import { degrees, PDFDocument, PDFFont } from 'pdf-lib';
+import { degrees, PDFDocument, PDFFont, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import fs from 'fs/promises';
 import page, { PDFPageFix } from '../lib/pdf/page';
@@ -26,12 +26,64 @@ const callText = (pagea: PDFPageFix, call: string, font: PDFFont) => {
     pagea.drawText(v, {
       rotate: degrees(90),
       x: { num: 19, unit: 'mm' },
-      y: { num: 100 - (l + 1) * 9 + 9 * i, unit: 'mm' },
+      y: { num: 100 - (l + 1) * 9 + 9 * i + 3.5, unit: 'mm' },
       size: { num: 9, unit: 'mm' },
       font,
     });
   });
 }
+
+const callBox = (pagea: PDFPageFix, call: string) => {
+  const l = call.length > 6 ? 8 : 6;
+  for (let i = 1; i <= l; i += 1) {
+    pagea.drawLine({
+      start: {
+        x: { num: 11, unit: 'mm' },
+        y: { num: 100 - 9 * i, unit: 'mm' },
+      },
+      end: {
+        x: { num: 11, unit: 'mm' },
+        y: { num: 100 - 9 * i - 6.5, unit: 'mm' },
+      },
+      color: rgb(1, 0, 0),
+    });
+    pagea.drawLine({
+      start: {
+        x: { num: 11, unit: 'mm' },
+        y: { num: 100 - 9 * i, unit: 'mm' },
+      },
+      end: {
+        x: { num: 20, unit: 'mm' },
+        y: { num: 100 - 9 * i, unit: 'mm' },
+      },
+      color: rgb(1, 0, 0),
+    });
+    
+    pagea.drawLine({
+      start: {
+        x: { num: 20, unit: 'mm' },
+        y: { num: 100 - 9 * i, unit: 'mm' },
+      },
+      end: {
+        x: { num: 20, unit: 'mm' },
+        y: { num: 100 - 9 * i - 6.5, unit: 'mm' },
+      },
+      color: rgb(1, 0, 0),
+    });
+    pagea.drawLine({
+      start: {
+        x: { num: 11, unit: 'mm' },
+        y: { num: 100 - 9 * i - 6.5, unit: 'mm' },
+      },
+      end: {
+        x: { num: 20, unit: 'mm' },
+        y: { num: 100 - 9 * i - 6.5, unit: 'mm' },
+      },
+      color: rgb(1, 0, 0),
+    });
+  }
+}
+
 
 const main = async (adifFile: string, userdataFile: string, templateFile: string, outFile: string) => {    
   const recs = recordsProxy(jarlsort(adif(adifFile)));
@@ -61,6 +113,7 @@ const main = async (adifFile: string, userdataFile: string, templateFile: string
     pagea.setFontSize(template.defaultSize);
 
     callText(pagea, rec.call, font.m1mr);
+    callBox(pagea, rec.call);
     (<DoOption[]>JSON.parse(DoOptionJSON)).forEach((o) => ttp.do(o)(pagea, userdata, rec));
   });
 
