@@ -117,7 +117,7 @@ const main = async (
   );
 
   const ttp = new TTP(font);
-  const DoOptionJSON = JSON.stringify(template.template);
+  const doOptionJSON = JSON.stringify(template.template);
 
   recs.forEach((rec) => {
     const pagea = page(
@@ -135,7 +135,7 @@ const main = async (
     if (template.callBox) {
       callBox(pagea, rec.call);
     }
-    (<DoOption[]>JSON.parse(DoOptionJSON)).forEach((o) =>
+    (<DoOption[]>JSON.parse(doOptionJSON)).forEach((o) =>
       ttp.do(o)(pagea, userdata, rec)
     );
   });
