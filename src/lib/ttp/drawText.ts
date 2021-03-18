@@ -64,5 +64,5 @@ export default (
     }
     throw new Error();
   }
-  return drawText(<string>text, options);
+  return drawText(text, options);
 };

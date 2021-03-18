@@ -34,7 +34,10 @@ export default class {
       return drawLine(<PDFPageDrawLineOptionsFix>entrie[1]);
     }
     if (entrie[0] === 'drawText') {
-      return drawText(<PDFPageDrawTextOptionsFixWithText>entrie[1], this.fonts);
+      return drawText(
+        <PDFPageDrawTextOptionsFixWithText>entrie[1],
+        this.fonts
+      );
     }
     throw new Error('undefined');
   }
