@@ -3,7 +3,7 @@ import { PDFPageDrawLineOptionsFix, PDFPageFix } from '../pdf/page';
 import drawLine from './drawLine';
 import drawText, { PDFPageDrawTextOptionsFixWithText } from './drawText';
 
-type DoOption =
+export type DoOption =
   | {
       drawLine: PDFPageDrawLineOptionsFix;
     }
