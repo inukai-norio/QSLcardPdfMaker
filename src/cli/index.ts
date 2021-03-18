@@ -7,6 +7,7 @@ import TTP, { DoOption } from '../lib/ttp';
 import adif from '../lib/adif';
 import jarlsort from '../lib/jarlsort';
 import recordsProxy from '../lib/recordsProxy';
+import { Command } from 'commander';
 
 type Template = {
   template: DoOption[];
@@ -144,9 +145,23 @@ const main = async (
   await fs.writeFile(outFile, pdfBytes);
 };
 
+const program = new Command();
+
+program
+.usage('[options] adif out ')
+  .version('0.0.1')
+  .option('-a, --adi <adi>', 'adif file')
+  .option('-u, --userdata <userdata>', 'userdata json')
+  .option('-t, --template <template>', 'template json')
+  .option('-o, --out <out>', 'out pdf');
+
+program.parse(process.argv);
+
+const options = program.opts();
+
 main(
-  './tests/data/jarlsort/test.adi',
-  'userdata.json',
-  './template/standard.json',
-  'aaa.pdf'
+  options.adi,
+  options.userdata,
+  options.template,
+  options.out,
 );
