@@ -1,13 +1,13 @@
 import { degrees, PDFDocument, PDFFont, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import fs from 'fs/promises';
+import { Command } from 'commander';
 import page, { PDFPageFix } from '../lib/pdf/page';
 import pt, { Ptuu } from '../lib/pdf/pt';
 import TTP, { DoOption } from '../lib/ttp';
 import adif from '../lib/adif';
 import jarlsort from '../lib/jarlsort';
 import recordsProxy from '../lib/recordsProxy';
-import { Command } from 'commander';
 
 type Template = {
   template: DoOption[];
@@ -148,7 +148,7 @@ const main = async (
 const program = new Command();
 
 program
-.usage('[options] adif out ')
+  .usage('[options] adif out ')
   .version('0.0.1')
   .option('-a, --adi <adi>', 'adif file')
   .option('-u, --userdata <userdata>', 'userdata json')
@@ -159,9 +159,4 @@ program.parse(process.argv);
 
 const options = program.opts();
 
-main(
-  options.adi,
-  options.userdata,
-  options.template,
-  options.out,
-);
+main(options.adi, options.userdata, options.template, options.out);
