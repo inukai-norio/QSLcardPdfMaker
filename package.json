@@ -17,9 +17,12 @@
   "author": "inukai norio <jj1uty@jarl.com>",
   "license": "MIT",
   "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
     "adif-parser-ts": "^0.3.6",
     "callsign": "^1.0.4",
-    "pdfmake": "^0.1.68"
+    "commander": "^7.1.0",
+    "moment": "^2.29.1",
+    "pdf-lib": "^1.16.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.16",
