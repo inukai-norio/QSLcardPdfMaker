@@ -134,7 +134,7 @@ const main = async (
       callText(pagea, rec.call, font.m1mr);
     }
     if (template.callBox) {
-      callBox(pagea, rec.call);
+      callBox(pagea, rec.call.split('/')[0]);
     }
     (<DoOption[]>JSON.parse(doOptionJSON)).forEach((o) =>
       ttp.do(o)(pagea, userdata, rec)
