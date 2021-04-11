@@ -131,7 +131,7 @@ const main = async (
     pagea.setFontSize(template.defaultSize);
 
     if (template.callText) {
-      callText(pagea, rec.call, font.m1mr);
+      callText(pagea, rec.call.split('/')[0], font.m1mr);
     }
     if (template.callBox) {
       callBox(pagea, rec.call.split('/')[0]);
